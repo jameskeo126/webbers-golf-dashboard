@@ -44,7 +44,7 @@ export function StatsPanel() {
               >
                 <header className="mb-3 flex items-center gap-2">
                   <span aria-hidden="true">{player.flag}</span>
-                  <h4 className="font-serif font-semibold" style={{ color: "var(--accent)" }}>
+                  <h4 className="font-semibold" style={{ color: "var(--text-primary)" }}>
                     {player.displayName}
                   </h4>
                 </header>

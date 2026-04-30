@@ -25,8 +25,8 @@ export function RoundTabs({
             onClick={() => onSelect(round.roundNumber)}
             className="flex-shrink-0 rounded-full px-4 py-2 text-sm font-medium transition"
             style={{
-              backgroundColor: isSelected ? "var(--accent)" : "var(--bg-surface)",
-              color: isSelected ? "#1a2a1a" : "var(--text-primary)",
+              backgroundColor: isSelected ? "var(--text-primary)" : "var(--bg-surface)",
+              color: isSelected ? "var(--bg-surface)" : "var(--text-primary)",
               border: "1px solid var(--border)",
               minHeight: "44px",
               minWidth: "44px",

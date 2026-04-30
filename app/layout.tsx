@@ -2,7 +2,7 @@ import type { Metadata } from "next"
 import "./globals.css"
 
 export const metadata: Metadata = {
-  title: "The Augusta Four",
+  title: "Webber's Golf Dashboard",
   description: "A 4-round golf tournament between four mates.",
 }
 

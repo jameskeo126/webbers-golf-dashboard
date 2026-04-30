@@ -3,35 +3,21 @@
 @tailwind utilities;
 
 :root {
-  --bg-primary:    #f5f0e8;
+  --bg-primary:    #ececec;
   --bg-surface:    #ffffff;
-  --bg-elevated:   #f0ebe0;
-  --accent:        #d4a843;
+  --bg-elevated:   #e0e0e0;
   --text-primary:  #1a1a1a;
   --text-muted:    #666666;
-  --score-under:   #cc0000;
-  --score-over:    #555555;
-  --score-eagle:   #b8860b;
-  --score-bogey:   #e8e2d4;
-  --score-double:  #c8c0a8;
-  --hole-winner:   #d4f0d4;
-  --border:        #d0c8b8;
+  --border:        #d0d0d0;
 }
 
 .dark {
-  --bg-primary:    #1a2a1a;
-  --bg-surface:    #243324;
-  --bg-elevated:   #2d3f2d;
-  --accent:        #d4a843;
+  --bg-primary:    #1a1a1a;
+  --bg-surface:    #242424;
+  --bg-elevated:   #2d2d2d;
   --text-primary:  #ffffff;
-  --text-muted:    #8aaa8a;
-  --score-under:   #e84040;
-  --score-over:    #888888;
-  --score-eagle:   #d4a843;
-  --score-bogey:   #4a4a4a;
-  --score-double:  #2c2c2c;
-  --hole-winner:   #2a5c2a;
-  --border:        #3a5c3a;
+  --text-muted:    #999999;
+  --border:        #3a3a3a;
 }
 
 html, body {
@@ -42,10 +28,6 @@ html, body {
 body {
   font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
-}
-
-.font-serif {
-  font-family: Georgia, "Times New Roman", Times, serif;
 }
 
 .tabular {

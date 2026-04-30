@@ -18,11 +18,11 @@ export function PlayerCommentaryCards({ round }: { round: Round }) {
         >
           <header className="mb-2 flex items-center gap-2">
             <span aria-hidden="true">{player.flag}</span>
-            <h4 className="font-serif text-base font-semibold" style={{ color: "var(--accent)" }}>
+            <h4 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>
               {player.displayName}
             </h4>
           </header>
-          <div className="italic leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
+          <div className="leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
             {text.split("\n\n").map((para, i) => (
               <p key={i}>{para}</p>
             ))}
