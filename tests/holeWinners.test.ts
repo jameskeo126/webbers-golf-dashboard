@@ -1,33 +1,46 @@
 import { describe, it, expect } from "vitest"
 import { computeHoleWinner } from "@/lib/holeWinners"
-import { ROUNDS } from "@/data/rounds"
+import { makeRound, makeScorecard, emptyRound } from "./fixtures"
+
+// Synthetic fixture: Josh's hole 1 is null, others have strokes — verifies
+// the "any null → null" rule. Other holes are populated for tie/unique-winner cases.
+const FIXTURE = [
+  makeRound(1, "in_progress", {
+    sam:   makeScorecard([4, 4, 4, 4, 4, 4, 4, 4, 4,  3, 4, 3, 3, 3, 4, 2, 3, 4]),
+    josh:  makeScorecard([null, 4, 4, 4, 4, 4, 4, 4, 4,  4, 3, 3, 4, 3, 4, 3, 3, 4]),
+    jamie: makeScorecard([4, 4, 4, 4, 4, 4, 4, 4, 4,  4, 3, 4, 3, 3, 4, 3, 4, 5]),
+    keo:   makeScorecard([4, 4, 4, 4, 4, 4, 4, 4, 4,  4, 3, 3, 5, 3, 4, 2, 4, 3]),
+  }),
+  emptyRound(2),
+  emptyRound(3),
+  emptyRound(4),
+]
 
 describe("computeHoleWinner", () => {
-  it("returns null when any player has null strokes for that hole (Day 1 hole 1 — Josh missing)", () => {
-    expect(computeHoleWinner(ROUNDS, "round_1", 1)).toBe(null)
+  it("returns null when any player has null strokes for that hole", () => {
+    expect(computeHoleWinner(FIXTURE, "round_1", 1)).toBe(null)
   })
-  it("returns null for any Day 1 front 9 hole because Josh's data is missing", () => {
-    for (let h = 1; h <= 9; h++) {
-      expect(computeHoleWinner(ROUNDS, "round_1", h)).toBe(null)
-    }
+
+  it("returns the unique lowest scorer when one player has the minimum", () => {
+    // Hole 10: sam 3, josh 4, jamie 4, keo 4 → sam wins
+    expect(computeHoleWinner(FIXTURE, "round_1", 10)).toBe("sam")
   })
-  it("returns the lowest scorer when all 4 have data and one is uniquely lowest", () => {
-    const fake = JSON.parse(JSON.stringify(ROUNDS)) as typeof ROUNDS
-    for (const pid of ["sam","josh","jamie","keo"] as const) {
-      const strokes = pid === "sam" ? 3 : 4
-      fake[0].scorecards[pid].holes[9].strokes = strokes
-    }
-    expect(computeHoleWinner(fake, "round_1", 10)).toBe("sam")
+
+  it("returns 'tie' when multiple players share the lowest", () => {
+    // Hole 11: sam 4, josh 3, jamie 3, keo 3 → tie (3-way at 3)
+    expect(computeHoleWinner(FIXTURE, "round_1", 11)).toBe("tie")
   })
-  it("returns 'tie' when two or more players share the lowest", () => {
-    const fake = JSON.parse(JSON.stringify(ROUNDS)) as typeof ROUNDS
-    fake[0].scorecards.sam.holes[10].strokes = 3
-    fake[0].scorecards.josh.holes[10].strokes = 3
-    fake[0].scorecards.jamie.holes[10].strokes = 4
-    fake[0].scorecards.keo.holes[10].strokes = 4
-    expect(computeHoleWinner(fake, "round_1", 11)).toBe("tie")
-  })
+
   it("returns null for an unknown roundId", () => {
-    expect(computeHoleWinner(ROUNDS, "round_99", 1)).toBe(null)
+    expect(computeHoleWinner(FIXTURE, "round_99", 1)).toBe(null)
+  })
+
+  it("identifies a unique winner when one player edges the others", () => {
+    // Hole 13: sam 3, josh 4, jamie 3, keo 5 → tie between sam and jamie
+    expect(computeHoleWinner(FIXTURE, "round_1", 13)).toBe("tie")
+    // Hole 16: sam 2, josh 3, jamie 3, keo 2 → tie between sam and keo
+    expect(computeHoleWinner(FIXTURE, "round_1", 16)).toBe("tie")
+    // Hole 18: sam 4, josh 4, jamie 5, keo 3 → keo wins outright
+    expect(computeHoleWinner(FIXTURE, "round_1", 18)).toBe("keo")
   })
 })

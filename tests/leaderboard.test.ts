@@ -1,9 +1,28 @@
 import { describe, it, expect } from "vitest"
 import { computeLeaderboard } from "@/lib/leaderboard"
-import { ROUNDS } from "@/data/rounds"
+import { makeRound, makeScorecard, emptyRound } from "./fixtures"
 
-describe("computeLeaderboard with seed Day 1 front 9 only", () => {
-  const rows = computeLeaderboard(ROUNDS)
+// Synthetic Day 1 front 9 fixture — same shape as the original launch state.
+// Sam -4, Josh -2 (no per-hole), Keo -2, Jamie -1.
+const sam_front9   = [4,3,3,2,3,3,4,5,5,  null,null,null,null,null,null,null,null,null]
+const josh_nofront = [null,null,null,null,null,null,null,null,null,  null,null,null,null,null,null,null,null,null]
+const jamie_front9 = [4,4,4,3,4,3,4,5,4,  null,null,null,null,null,null,null,null,null]
+const keo_front9   = [6,3,3,4,3,3,5,4,3,  null,null,null,null,null,null,null,null,null]
+
+const FRONT9_FIXTURE = [
+  makeRound(1, "in_progress", {
+    sam:   makeScorecard(sam_front9),
+    josh:  makeScorecard(josh_nofront, { front9Strokes: 34, front9ToPar: -2 }),
+    jamie: makeScorecard(jamie_front9),
+    keo:   makeScorecard(keo_front9),
+  }),
+  emptyRound(2),
+  emptyRound(3),
+  emptyRound(4),
+]
+
+describe("computeLeaderboard — synthetic Day 1 front 9 only", () => {
+  const rows = computeLeaderboard(FRONT9_FIXTURE)
 
   it("returns 4 rows", () => {
     expect(rows).toHaveLength(4)
@@ -40,9 +59,32 @@ describe("computeLeaderboard with seed Day 1 front 9 only", () => {
     }
   })
 
-  it("Josh's R1 uses stored front9ToPar fallback (per-hole strokes are null)", () => {
+  it("Josh's R1 uses stored front9ToPar fallback when per-hole strokes are null", () => {
     const josh = rows.find(r => r.playerId === "josh")!
     expect(josh.r1ToPar).toBe(-2)
     expect(josh.totalToPar).toBe(-2)
+  })
+})
+
+describe("computeLeaderboard — round status complete uses totalToPar directly", () => {
+  it("ranks players by completed round totalToPar", () => {
+    const r1 = makeRound(1, "complete", {
+      // Sam: 18 fours = 72 strokes, par (totalToPar 0)
+      sam:   makeScorecard([4,4,4,4,4,4,4,4,4,  4,4,4,4,4,4,4,4,4]),
+      // Josh: 18 threes = 54 strokes, totalToPar -18
+      josh:  makeScorecard([3,3,3,3,3,3,3,3,3,  3,3,3,3,3,3,3,3,3]),
+      // Jamie: 18 fives = 90 strokes, totalToPar +18
+      jamie: makeScorecard([5,5,5,5,5,5,5,5,5,  5,5,5,5,5,5,5,5,5]),
+      // Keo: same as Sam, even par
+      keo:   makeScorecard([4,4,4,4,4,4,4,4,4,  4,4,4,4,4,4,4,4,4]),
+    })
+    const rows = computeLeaderboard([r1, emptyRound(2), emptyRound(3), emptyRound(4)])
+
+    // Order: Josh -18, Sam 0 (T2), Keo 0 (T2), Jamie +18
+    expect(rows.map(r => r.playerId)).toEqual(["josh", "sam", "keo", "jamie"])
+    expect(rows[0].positionDisplay).toBe("1")
+    expect(rows[1].positionDisplay).toBe("T2")
+    expect(rows[2].positionDisplay).toBe("T2")
+    expect(rows[3].positionDisplay).toBe("4")
   })
 })
