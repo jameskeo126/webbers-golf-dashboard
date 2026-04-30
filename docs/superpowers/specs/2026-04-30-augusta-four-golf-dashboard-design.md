@@ -142,11 +142,21 @@ lib/
 
 #### `computeLeaderboard` rules
 
-For each player, computes `r1ToPar`, `r2ToPar`, `r3ToPar`, `r4ToPar`, and `totalToPar`:
+For each player, computes `r1ToPar`, `r2ToPar`, `r3ToPar`, `r4ToPar`, and `totalToPar`. To-par contribution per round is determined by this fallback chain (first match wins):
 
-- A round contributes its `totalToPar` if the round's `status === "complete"`. Otherwise it contributes the **running** to-par across whichever holes have non-null strokes (computed on the fly: sum of strokes − sum of pars across played holes). For Day 1 front 9 only, this means R1 displays `-4` for Sam, `-2` for Josh and Keo, `-1` for Jamie.
-- If a player has zero non-null holes in a round, the round column renders `—` and contributes 0 to the running total.
-- `totalToPar` is the sum of all played-hole contributions across all 4 rounds.
+1. If the round's `status === "complete"` AND `scorecard.totalToPar !== null` → use `scorecard.totalToPar`.
+2. Else if `scorecard.totalToPar !== null` (round in-progress but full 18-hole total stored) → use it.
+3. Else if `scorecard.front9ToPar !== null` AND `scorecard.back9ToPar !== null` → use their sum.
+4. Else if `scorecard.front9ToPar !== null` (front 9 known, back 9 not played) → use it.
+5. Else if `scorecard.back9ToPar !== null` (back 9 known, front 9 not played — unusual but supported) → use it.
+6. Else if any hole has non-null strokes → use the running to-par across non-null holes (sum of strokes − sum of pars across played holes only).
+7. Else → contribution is `null`; the round column renders `—` and contributes `0` to `totalToPar`.
+
+This fallback chain handles two distinct cases: full per-hole data (Sam, Jamie, Keo on Day 1) and section-total-only data (Josh on Day 1, where `front9ToPar = -2` is stored but per-hole strokes are null).
+
+For Day 1 front 9: R1 displays `-4` for Sam (rule 4 via per-hole sum or via `front9ToPar`), `-2` for Josh (rule 4 via stored `front9ToPar = -2`), `-2` for Keo (rule 4), and `-1` for Jamie (rule 4).
+
+`totalToPar` is the sum of all 4 rounds' contributions. Rounds contributing `null` count as 0.
 
 Sort order:
 1. Primary: ascending by `totalToPar` (lower is better — under par wins)
