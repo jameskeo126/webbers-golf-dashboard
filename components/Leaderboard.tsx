@@ -31,7 +31,7 @@ export function Leaderboard() {
       <h2 className="text-xl font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
         Leaderboard
       </h2>
-      <table className="text-left tabular text-sm sm:text-base">
+      <table className="w-full text-left tabular text-sm sm:w-auto sm:text-base">
         <thead style={{ color: "var(--text-muted)" }}>
           <tr>
             <th className="py-2 pr-2 font-medium">POS</th>
