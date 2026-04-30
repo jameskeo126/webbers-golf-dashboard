@@ -59,7 +59,7 @@ function PlayerCard({
             className="w-full text-left text-sm font-medium transition hover:opacity-80"
             style={{ color: "var(--text-primary)", minHeight: "44px" }}
           >
-            {open ? "Hide the take ▴" : "Read the take ▾"}
+            {open ? "Hide The Take ▴" : "Read The Take ▾"}
           </button>
           {open ? (
             <div className="mt-2 leading-relaxed space-y-3 text-sm" style={{ color: "var(--text-muted)" }}>

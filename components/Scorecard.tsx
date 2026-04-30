@@ -103,7 +103,7 @@ export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
           style={{ borderTop: "1px solid var(--border)" }}
         >
           <h4 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
-            The take
+            The Take
           </h4>
           <div className="leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
             {round.commentary.summary.split("\n\n").map((para, i) => (

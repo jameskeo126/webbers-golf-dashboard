@@ -1,4 +1,4 @@
-import { ROUNDS } from "@/data/rounds"
+import { ROUNDS, SEASON_COMMENTARY } from "@/data/rounds"
 import { PLAYERS } from "@/data/players"
 import { computeLeaderboard } from "@/lib/leaderboard"
 import { formatToPar } from "@/lib/scoreUtils"
@@ -71,6 +71,21 @@ export function Leaderboard() {
           ))}
         </tbody>
       </table>
+      {SEASON_COMMENTARY ? (
+        <div
+          className="mt-5 pt-5"
+          style={{ borderTop: "1px solid var(--border)" }}
+        >
+          <h3 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
+            The Story So Far
+          </h3>
+          <div className="leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
+            {SEASON_COMMENTARY.split("\n\n").map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
+        </div>
+      ) : null}
     </section>
   )
 }

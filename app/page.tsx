@@ -3,7 +3,6 @@
 import { useState } from "react"
 import { Header } from "@/components/Header"
 import { Leaderboard } from "@/components/Leaderboard"
-import { SeasonCommentary } from "@/components/SeasonCommentary"
 import { RoundTabs } from "@/components/RoundTabs"
 import { Scorecard } from "@/components/Scorecard"
 import { PlayerCards } from "@/components/PlayerCards"
@@ -17,7 +16,6 @@ export default function HomePage() {
     <main className="min-h-screen pb-12">
       <Header />
       <Leaderboard />
-      <SeasonCommentary />
       <Scorecard
         round={round}
         tabs={<RoundTabs selected={selectedRound} onSelect={setSelectedRound} />}
