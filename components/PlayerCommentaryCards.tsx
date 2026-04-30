@@ -22,9 +22,11 @@ export function PlayerCommentaryCards({ round }: { round: Round }) {
               {player.displayName}
             </h4>
           </header>
-          <p className="italic leading-relaxed" style={{ color: "var(--text-muted)" }}>
-            {text}
-          </p>
+          <div className="italic leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
+            {text.split("\n\n").map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
         </article>
       ))}
     </section>

@@ -139,12 +139,14 @@ export function Scorecard({ round }: { round: Round }) {
           className="mt-5 pt-5"
           style={{ borderTop: "1px solid var(--border)" }}
         >
-          <h4 className="font-serif text-base mb-2" style={{ color: "var(--accent)" }}>
+          <h4 className="font-serif text-base mb-3" style={{ color: "var(--accent)" }}>
             {round.label} — the take
           </h4>
-          <p className="italic leading-relaxed" style={{ color: "var(--text-muted)" }}>
-            {round.commentary.summary}
-          </p>
+          <div className="italic leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
+            {round.commentary.summary.split("\n\n").map((para, i) => (
+              <p key={i}>{para}</p>
+            ))}
+          </div>
         </div>
       ) : null}
     </section>
