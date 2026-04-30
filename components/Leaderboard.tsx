@@ -28,61 +28,65 @@ export function Leaderboard() {
       className="mx-4 my-4 rounded-2xl p-4 sm:mx-6 sm:p-6"
       style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border)" }}
     >
-      <h2 className="text-xl font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
-        Leaderboard
-      </h2>
-      <table className="w-full text-left tabular text-sm sm:w-auto sm:text-base">
-        <thead style={{ color: "var(--text-muted)" }}>
-          <tr>
-            <th className="py-2 pr-2 font-medium">POS</th>
-            <th className="py-2 pr-2 font-medium">PLAYER</th>
-            <th className="py-2 px-1 text-right font-medium">R1</th>
-            <th className="py-2 px-1 text-right font-medium">R2</th>
-            <th className="py-2 px-1 text-right font-medium">R3</th>
-            <th className="py-2 px-1 text-right font-medium">R4</th>
-            <th className="py-2 pl-2 text-right font-medium">TOTAL</th>
-          </tr>
-        </thead>
-        <tbody style={{ color: "var(--text-primary)" }}>
-          {rows.map(row => (
-            <tr
-              key={row.playerId}
-              style={{ borderTop: "1px solid var(--border)" }}
-            >
-              <td className="py-3 pr-2 font-semibold">
-                {row.positionDisplay}
-              </td>
-              <td className="py-3 pr-2"><PlayerCell row={row} /></td>
-              <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r1ToPar) }}>
-                {formatToPar(row.r1ToPar)}
-              </td>
-              <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r2ToPar) }}>
-                {formatToPar(row.r2ToPar)}
-              </td>
-              <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r3ToPar) }}>
-                {formatToPar(row.r3ToPar)}
-              </td>
-              <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r4ToPar) }}>
-                {formatToPar(row.r4ToPar)}
-              </td>
-              <td className="py-3 pl-2 text-right font-semibold">
-                {formatToPar(row.totalToPar)}
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-      {SEASON_COMMENTARY ? (
-        <div
-          className="mt-5 pt-5"
-          style={{ borderTop: "1px solid var(--border)" }}
-        >
-          <h3 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
-            The Story So Far
-          </h3>
-          <ExpandableProse paragraphs={SEASON_COMMENTARY.split("\n\n")} />
+      <div className="md:grid md:grid-cols-2 md:gap-8">
+        <div>
+          <h2 className="text-xl font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
+            Leaderboard
+          </h2>
+          <table className="w-full text-left tabular text-sm sm:text-base">
+            <thead style={{ color: "var(--text-muted)" }}>
+              <tr>
+                <th className="py-2 pr-2 font-medium">POS</th>
+                <th className="py-2 pr-2 font-medium">PLAYER</th>
+                <th className="py-2 px-1 text-right font-medium">R1</th>
+                <th className="py-2 px-1 text-right font-medium">R2</th>
+                <th className="py-2 px-1 text-right font-medium">R3</th>
+                <th className="py-2 px-1 text-right font-medium">R4</th>
+                <th className="py-2 pl-2 text-right font-medium">TOTAL</th>
+              </tr>
+            </thead>
+            <tbody style={{ color: "var(--text-primary)" }}>
+              {rows.map(row => (
+                <tr
+                  key={row.playerId}
+                  style={{ borderTop: "1px solid var(--border)" }}
+                >
+                  <td className="py-3 pr-2 font-semibold">
+                    {row.positionDisplay}
+                  </td>
+                  <td className="py-3 pr-2"><PlayerCell row={row} /></td>
+                  <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r1ToPar) }}>
+                    {formatToPar(row.r1ToPar)}
+                  </td>
+                  <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r2ToPar) }}>
+                    {formatToPar(row.r2ToPar)}
+                  </td>
+                  <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r3ToPar) }}>
+                    {formatToPar(row.r3ToPar)}
+                  </td>
+                  <td className="py-3 px-1 text-right" style={{ color: scoreTextColor(row.r4ToPar) }}>
+                    {formatToPar(row.r4ToPar)}
+                  </td>
+                  <td className="py-3 pl-2 text-right font-semibold">
+                    {formatToPar(row.totalToPar)}
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
         </div>
-      ) : null}
+        {SEASON_COMMENTARY ? (
+          <div
+            className="mt-5 pt-5 md:mt-0 md:pt-0 md:pl-8 md:border-t-0 md:border-l"
+            style={{ borderTop: "1px solid var(--border)", borderLeftColor: "var(--border)" }}
+          >
+            <h3 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
+              The Story So Far
+            </h3>
+            <ExpandableProse paragraphs={SEASON_COMMENTARY.split("\n\n")} />
+          </div>
+        ) : null}
+      </div>
     </section>
   )
 }

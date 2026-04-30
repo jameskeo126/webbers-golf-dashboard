@@ -1,7 +1,7 @@
 export function ScoreCell({ strokes }: { strokes: number | null }) {
   return (
     <td
-      className="h-10 w-20 sm:w-16 text-center tabular text-sm font-medium"
+      className="h-10 w-10 sm:w-16 text-center tabular text-sm font-medium"
       style={{
         color: strokes === null ? "var(--text-muted)" : "var(--text-primary)",
         border: "1px solid var(--border)",
