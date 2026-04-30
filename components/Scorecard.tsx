@@ -134,6 +134,19 @@ export function Scorecard({ round }: { round: Round }) {
       <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
         Scroll horizontally to see all 18 holes.
       </p>
+      {round.commentary.summary ? (
+        <div
+          className="mt-5 pt-5"
+          style={{ borderTop: "1px solid var(--border)" }}
+        >
+          <h4 className="font-serif text-base mb-2" style={{ color: "var(--accent)" }}>
+            {round.label} — the take
+          </h4>
+          <p className="italic leading-relaxed" style={{ color: "var(--text-muted)" }}>
+            {round.commentary.summary}
+          </p>
+        </div>
+      ) : null}
     </section>
   )
 }
