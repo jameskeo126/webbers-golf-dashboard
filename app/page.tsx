@@ -1,12 +1,11 @@
 import { Header } from "@/components/Header"
+import { Leaderboard } from "@/components/Leaderboard"
 
 export default function HomePage() {
   return (
     <main>
       <Header />
-      <div className="p-4 sm:p-6">
-        <p style={{ color: "var(--text-muted)" }}>Dashboard coming online…</p>
-      </div>
+      <Leaderboard />
     </main>
   )
 }
