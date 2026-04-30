@@ -39,37 +39,44 @@ function PlayerCard({
           {player.displayName}
         </h4>
       </header>
-      <div className="space-y-1.5 mb-4">
-        <StatRow label="Eagles" value={stats.eagles} />
-        <StatRow label="Birdies" value={stats.birdies} />
-        <StatRow label="Pars" value={stats.pars} />
-        <StatRow label="Bogeys" value={stats.bogeys} />
-        <StatRow label="Double bogey+" value={stats.doubleBogeyPlus} />
-        <StatRow label="Holes won" value={stats.holesWon} />
-        <StatRow label="Holes lost" value={stats.holesLost} />
-        <StatRow label="Holes tied" value={stats.holesTied} />
-        <StatRow label="Best round" value={stats.bestRound === null ? "—" : formatToPar(stats.bestRound)} />
-        <StatRow label="Scoring avg" value={stats.scoringAverage === null ? "—" : stats.scoringAverage.toFixed(2)} />
-      </div>
       {paragraphs.length > 0 ? (
-        <div className="mt-auto pt-3" style={{ borderTop: "1px solid var(--border)" }}>
-          <button
-            onClick={() => setOpen(o => !o)}
-            aria-expanded={open}
-            className="w-full text-left text-sm font-medium transition hover:opacity-80"
-            style={{ color: "var(--text-primary)", minHeight: "44px" }}
-          >
-            {open ? "Hide The Take ▴" : "Read The Take ▾"}
-          </button>
+        <div className="mb-4">
           {open ? (
-            <div className="mt-2 leading-relaxed space-y-3 text-sm" style={{ color: "var(--text-muted)" }}>
+            <div className="leading-relaxed space-y-3 text-sm" style={{ color: "var(--text-muted)" }}>
               {paragraphs.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
-          ) : null}
+          ) : (
+            <p
+              className="leading-relaxed text-sm line-clamp-3"
+              style={{ color: "var(--text-muted)" }}
+            >
+              {paragraphs[0]}
+            </p>
+          )}
+          <button
+            onClick={() => setOpen(o => !o)}
+            aria-expanded={open}
+            className="mt-2 text-sm font-medium transition hover:opacity-80"
+            style={{ color: "var(--text-primary)" }}
+          >
+            {open ? "Hide Commentary ▴" : "Read Commentary ▾"}
+          </button>
         </div>
       ) : null}
+      <div className="space-y-1.5 pt-3" style={{ borderTop: paragraphs.length > 0 ? "1px solid var(--border)" : "none" }}>
+        <StatRow label="Eagles" value={stats.eagles} />
+        <StatRow label="Birdies" value={stats.birdies} />
+        <StatRow label="Pars" value={stats.pars} />
+        <StatRow label="Bogeys" value={stats.bogeys} />
+        <StatRow label="Double Bogey+" value={stats.doubleBogeyPlus} />
+        <StatRow label="Holes Won" value={stats.holesWon} />
+        <StatRow label="Holes Lost" value={stats.holesLost} />
+        <StatRow label="Holes Tied" value={stats.holesTied} />
+        <StatRow label="Best Round" value={stats.bestRound === null ? "—" : formatToPar(stats.bestRound)} />
+        <StatRow label="Scoring Avg" value={stats.scoringAverage === null ? "—" : stats.scoringAverage.toFixed(2)} />
+      </div>
     </article>
   )
 }
@@ -77,7 +84,7 @@ function PlayerCard({
 export function PlayerCards({ round }: { round: Round }) {
   return (
     <section
-      aria-label="Player stats and commentary"
+      aria-label="Player commentary and stats"
       className="flex gap-3 overflow-x-auto snap-x snap-mandatory px-4 pb-4 my-4 sm:px-6 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4"
       style={{ scrollSnapType: "x mandatory" }}
     >
