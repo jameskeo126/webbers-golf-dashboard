@@ -18,21 +18,22 @@ function emptyScorecard(): Scorecard {
   }
 }
 
-// Day 1 — front 9 played, back 9 not played.
-// Sam: 4,3,3,2,3,3,4,5,5 → 32 strokes, -4
-const sam_r1 = holesFromStrokes([4,3,3,2,3,3,4,5,5,  null,null,null,null,null,null,null,null,null])
-// Keo: 6,3,3,4,3,3,5,4,3 → 34 strokes, -2
-const keo_r1 = holesFromStrokes([6,3,3,4,3,3,5,4,3,  null,null,null,null,null,null,null,null,null])
-// Jamie: 4,4,4,3,4,3,4,5,4 → 35 strokes, -1
-const jamie_r1 = holesFromStrokes([4,4,4,3,4,3,4,5,4, null,null,null,null,null,null,null,null,null])
-// Josh: per-hole unknown but front9ToPar = -2 (so front9Strokes = 34)
-const josh_r1 = holesFromStrokes(Array(18).fill(null))
+// Day 1 — complete.
+// Sam: front 4,3,3,2,3,3,4,5,5 (32, -4) + back 3,4,3,4,3,4,2,3,4 (30, -6) = 62, -10
+const sam_r1 = holesFromStrokes([4,3,3,2,3,3,4,5,5,  3,4,3,4,3,4,2,3,4])
+// Keo: front 6,3,3,4,3,3,5,4,3 (34, -2) + back 4,3,3,5,3,4,2,4,3 (31, -5) = 65, -7
+const keo_r1 = holesFromStrokes([6,3,3,4,3,3,5,4,3,  4,3,3,5,3,4,2,4,3])
+// Jamie: front 4,4,4,3,4,3,4,5,4 (35, -1) + back 4,3,2,3,3,3,3,4,5 (30, -6) = 65, -7
+const jamie_r1 = holesFromStrokes([4,4,4,3,4,3,4,5,4, 4,3,2,3,3,3,3,4,5])
+// Josh: front 9 per-hole still unknown (front9ToPar -2, 34 strokes inferred).
+// Back 9 confirmed: 4,3,2,5,3,4,3,3,4 (31, -5). Total: 34 + 31 = 65, -7.
+const josh_r1 = holesFromStrokes([null,null,null,null,null,null,null,null,null,  4,3,2,5,3,4,3,3,4])
 
 const r1Scorecards: Record<PlayerId, Scorecard> = {
-  sam:   { holes: sam_r1,   front9Strokes: 32, front9ToPar: -4, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
-  josh:  { holes: josh_r1,  front9Strokes: 34, front9ToPar: -2, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
-  jamie: { holes: jamie_r1, front9Strokes: 35, front9ToPar: -1, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
-  keo:   { holes: keo_r1,   front9Strokes: 34, front9ToPar: -2, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  sam:   { holes: sam_r1,   front9Strokes: 32, front9ToPar: -4, back9Strokes: 30, back9ToPar: -6, totalStrokes: 62, totalToPar: -10 },
+  josh:  { holes: josh_r1,  front9Strokes: 34, front9ToPar: -2, back9Strokes: 31, back9ToPar: -5, totalStrokes: 65, totalToPar: -7 },
+  jamie: { holes: jamie_r1, front9Strokes: 35, front9ToPar: -1, back9Strokes: 30, back9ToPar: -6, totalStrokes: 65, totalToPar: -7 },
+  keo:   { holes: keo_r1,   front9Strokes: 34, front9ToPar: -2, back9Strokes: 31, back9ToPar: -5, totalStrokes: 65, totalToPar: -7 },
 }
 
 function emptyRound(roundNumber: 1 | 2 | 3 | 4, label: string): Round {
@@ -51,41 +52,41 @@ export const ROUNDS: Round[] = [
     id: "round_1",
     roundNumber: 1,
     label: "Day 1",
-    status: "in_progress",
+    status: "complete",
     scorecards: r1Scorecards,
     commentary: {
       players: {
-        sam: `Sam — first round, front 9, ALREADY -4. Eagle on the par-5 second, then a treble-birdie streak across 3, 4 and 5 like he's been having a quiet practice block none of us were invited to. The rest of the lads were stood there with their wedges drying on the tee pretending not to see the scoreboard.
+        sam: `Sam shot a 62. Sixty-two. Across all 18 holes of Augusta National. The rest of us are sitting here re-reading the leaderboard like it's a typo.
 
-Suspiciously good putting? Mate, this is Augusta in April, not the local pitch and putt. We need to see the swing analyser. Then — mercifully — the great fraud reveal: a five on the par-4 ninth. A bogey to close the front. Couldn't even keep the ribbon-cutting tidy.
+Front 9 was already an offence: -4 with the eagle on hole 2 and a three-birdie run across 3, 4 and 5. Closed with a bogey on 9, briefly suggesting humanity. Then on the back 9 he proceeded to put a birdie on basically every other hole — 10, 13, 14, 15, 16, 17. Six birdies on nine holes. Three pars. No bogeys. 30 strokes for the back nine.
 
-Still, -4 through nine. Set up like he's been rehearsing this entire weekend in private mode. We see you, Sam Clifford. We've got 27 holes to drag him back to the rest of us.`,
+Sam Clifford is -10 through one round. The rest of us are tied at -7, three strokes back, looking for the controller's reset button. The only way back into this tournament is a Sam Clifford mid-round nervous breakdown. We will be watching for one.`,
 
-        josh: `Josh "the data scientist" Dally has just submitted what may be the most aggressively vague scorecard in modern competitive golf. Front 9: -2. How? Don't know. Hole-by-hole? Refused to file. Methodology? CLASSIFIED.
+        josh: `Josh, mate. Josh. The back 9 came in. WITH PER-HOLE NUMBERS. At last.
 
-There is, in the official record, simply a number — minus two — and a polite man's hope that no one asks follow-up questions. "Trust me," says Josh, the guy who ALSO claimed last week he 'almost' eagled the 14th and we all watched him three-putt from twelve feet.
+5 birdies — holes 11, 12, 14, 15, 17 — and 4 pars. -5 on the back. 31 strokes. Not a single hole over par. We see you. We have written it down. The audit is, for now, paused.
 
-Look — we'll take it. -2 is -2, even if it arrived in a brown envelope marked "do not investigate." But for the record, joshdally, when those nine missing numbers turn up, we will be reading them out one by one in chronological order. With commentary. Possibly under oath. The audit will be brutal.`,
+But the front 9 of Day 1 remains a blank space. -2 with no per-hole story. Josh sits at -7 for the day, tied for second, and we still don't know how he opened. Day 2 had better arrive with a complete card or the audit comes back from suspension and the proceedings will be PUBLIC. Day 1: -7. Most of the data, eventually tabled.`,
 
-        jamie: `Jamie Maclaren has spent nine holes proving that golf, played correctly, is the most boring sport on the planet. One birdie on the second. Then seven consecutive pars. SEVEN. He didn't push. He didn't gamble. He didn't make a single decision worth retelling.
+        jamie: `Jamie has been deceiving us this entire time.
 
--1 is the score of a man who spreadsheets his own emotions. Watching umie51 play right now is like watching someone fold a fitted sheet on the first attempt — technically impressive, deeply unsettling, no one's enjoying themselves. Meanwhile Sam's eagling and Keo's having an absolute psychotic episode out there, and Jamie's posting pars like he's billing them by the hour.
+Front 9 was the bait. 8 pars, 1 birdie, the most boring nine holes in golf. We called him a metronome. We mocked him for treating Augusta like a spreadsheet. We were WRONG. We were SET UP.
 
-Look, Maclaren — we know this is an Australian thing, the boring excellence. But you're playing The Masters here. Hit a tree. Three-putt something. Show us a HEARTBEAT. The leaderboard says you're fourth and we're not surprised. Wake up.`,
+Back 9: two eagles. TWO. Hole 13 (par 5, three on the card). Hole 15 (par 5, three on the card). Three more birdies. One par. A bogey on 18 to keep the ledger honest. 30 strokes for -6 on the back. He went round Amen Corner like he was filing it for tax purposes — calmly, ruthlessly, with no expression on his face.
 
-        keo: `Hames Keo — a man who has, in the space of nine holes, managed to play both the worst and the best round of golf any of us has ever witnessed. Hole one: a SIX on a par 4. Double bogey, opening tee, in front of God and the entire WhatsApp group. The man almost packed up and went home.
+Tied second at -7. Jamie Maclaren has been quietly murderous and we hereby apologise for ever using the word 'metronome'. Sam still has a three-stroke lead. But Jamie just put the leader on notice.`,
 
-THEN. Hole two: a 3 on the par 5. EAGLE. Same player, same club, same morning. We checked three times — yep, that's our boy. From there it was just chaos: birdies on 3, 5, 8 and 9, a par on 6, two more bogeys for good measure.
+        keo: `Keo's back 9 was the most upsetting thing about today.
 
-Final tally: -2. JamesKeo126 has a method, and the method is "throw it all in a bag and shake." Look, anyone can shoot -2 on the front 9. Only Keo can shoot -2 with a 6 and an eagle on consecutive holes. This is sport.`,
+It was — and this is hard to type — disciplined. Five birdies (holes 11, 14, 15, 16, 18). Four pars. ZERO bogeys. ZERO disasters. ZERO double-bogeys. 31 strokes. -5 on the back.
+
+The man who opened the day with a six on hole one and an eagle on hole two has finished the day with what can only be described as 'a real round of golf'. Like an actual functioning competitive golfer. JamesKeo126 is tied second at -7. We are deeply concerned. The chaos was a feature, not a bug. Day 2 had better contain at least one car-crash hole or we are filing a missing persons report for the Keo we knew.`,
       },
-      summary: `Day 1, front 9 in the books, and the leaderboard tells you everything you need to know about the personalities sat at the top of it.
+      summary: `Day 1 is done and Sam Clifford has put down a marker that should make the rest of us feel embarrassed for showing up. A 62. -10. Bogey-free on the back nine with six birdies across nine holes. He's three clear of a three-way tie at -7.
 
-Sam Clifford leads at -4, on the back of an eagle and a three-birdie streak that looked rehearsed enough to warrant a grand jury investigation. Josh and Keo are both at -2, but in two completely different ways: Keo got there via a double bogey on hole one followed immediately by an eagle on hole two — a whiplash trajectory that frankly should be classified as a medical event — while Josh got there by submitting a card that says "-2" and refusing to elaborate. The audit will come.
+In the second-place chase: Josh "I will file numbers when it suits me" Dally finally turned in a back-9 per-hole card (-5), Jamie Maclaren had a two-eagle psychotic episode after pretending to be boring all morning, and Keo posted the most boring back 9 of his career — five birdies, four pars, zero chaos.
 
-Jamie is fourth at -1, posting eight pars and one birdie like a man being paid by the hour to be unremarkable. There's a 2-stroke gap between Sam and the chasing pack — small enough to close, large enough to look like a beating in EA Sports' on-screen scoreboard.
-
-Back 9 still to play on Day 1, and three more days after that. Eight more 9-hole batches. It's only just started.`,
+Three strokes is gettable in three days. Three strokes from Sam, when Sam is shooting -10, is something else entirely. The chasing pack needs a wobble. Day 2 begins tomorrow.`,
     },
   },
   emptyRound(2, "Day 2"),
@@ -93,10 +94,8 @@ Back 9 still to play on Day 1, and three more days after that. Eight more 9-hole
   emptyRound(4, "Day 4"),
 ]
 
-export const SEASON_COMMENTARY: string | null = `Welcome to the season report after exactly one (1) front nine. Already there's a leader and a complete shambles, which is well ahead of schedule.
+export const SEASON_COMMENTARY: string | null = `Day 1 is in the books. Sam Clifford leads at -10. Read that again — minus ten. He shot a 62 at Augusta in his opening round: one eagle, nine birdies, seven pars, one bogey. Bogey-free on the back. The rest of the field is tied at -7, three strokes back, three days remaining.
 
-Sam Clifford has set the pace at -4, putting him two strokes clear of the chasing pack and forcing the rest of us into a public discussion about whether he has, in fact, secretly been practising. The chasing pack — Josh "I refuse to submit hole-by-hole data" Dally and Hames "double bogey then eagle" Keo — are tied at -2. Jamie is fourth at -1, posting numbers so consistent they've started warning insurance underwriters.
+Josh, Jamie and Keo all share second. Josh finally produced per-hole numbers on the back 9 (the front 9 audit remains pending). Jamie went from metronome to two-eagle assassin in the space of nine holes. Keo turned in the only quietly competent round of his career so far. Strange day.
 
-There are seven 9-hole batches still to play across Days 2, 3 and 4 plus the back 9 of Day 1. Plenty of room for Sam to choke the lead away. Plenty of room for Keo's chaos style to either win the tournament or get him spectacularly swallowed by a water hazard. Plenty of room for Jamie to go full metronome and grind out a comeback no one will enjoy. Plenty of room for Josh to keep filing scorecards via interpretive dance.
-
-Strap in.`
+Three more days, six 9-hole batches still to play. Sam has to keep his composure. The chasing pack has to find another three strokes from somewhere — and they need to find them in the same round, otherwise Sam just trades wins. Strap in for Day 2.`
