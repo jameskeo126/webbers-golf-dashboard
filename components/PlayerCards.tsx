@@ -85,8 +85,8 @@ export function PlayerCards({ round }: { round: Round }) {
   return (
     <section
       aria-label="Player commentary and stats"
-      className="flex gap-3 overflow-x-auto snap-x snap-mandatory px-4 pb-4 my-4 sm:px-6 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4"
-      style={{ scrollSnapType: "x mandatory" }}
+      className="flex gap-3 overflow-x-auto snap-x snap-mandatory scroll-px-4 px-4 pb-4 my-4 sm:scroll-px-6 sm:px-6 sm:grid sm:grid-cols-2 sm:overflow-visible sm:pb-0 lg:grid-cols-4"
+      style={{ scrollSnapType: "x mandatory", scrollPaddingInline: "1rem" }}
     >
       {PLAYERS.map(player => (
         <PlayerCard

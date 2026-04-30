@@ -3,6 +3,7 @@ import type { ReactNode } from "react"
 import { PLAYERS } from "@/data/players"
 import { HOLE_PARS, FRONT_9_PAR, BACK_9_PAR } from "@/data/course"
 import { ScoreCell } from "./ScoreCell"
+import { ExpandableProse } from "./ExpandableProse"
 
 function sumStrokes(holes: { strokes: number | null }[], from: number, to: number): number | null {
   let sum = 0
@@ -105,11 +106,7 @@ export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
           <h4 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
             The Take
           </h4>
-          <div className="leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
-            {round.commentary.summary.split("\n\n").map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
+          <ExpandableProse paragraphs={round.commentary.summary.split("\n\n")} />
         </div>
       ) : null}
     </section>

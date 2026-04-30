@@ -3,6 +3,7 @@ import { PLAYERS } from "@/data/players"
 import { computeLeaderboard } from "@/lib/leaderboard"
 import { formatToPar } from "@/lib/scoreUtils"
 import type { LeaderboardRow } from "@/data/types"
+import { ExpandableProse } from "./ExpandableProse"
 
 function scoreTextColor(toPar: number | null): string {
   return toPar === null ? "var(--text-muted)" : "var(--text-primary)"
@@ -79,11 +80,7 @@ export function Leaderboard() {
           <h3 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
             The Story So Far
           </h3>
-          <div className="leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
-            {SEASON_COMMENTARY.split("\n\n").map((para, i) => (
-              <p key={i}>{para}</p>
-            ))}
-          </div>
+          <ExpandableProse paragraphs={SEASON_COMMENTARY.split("\n\n")} />
         </div>
       ) : null}
     </section>
