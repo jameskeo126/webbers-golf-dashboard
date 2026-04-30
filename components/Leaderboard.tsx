@@ -77,8 +77,8 @@ export function Leaderboard() {
         </div>
         {SEASON_COMMENTARY ? (
           <div
-            className="mt-5 pt-5 md:mt-0 md:pt-0 md:pl-8 md:border-t-0 md:border-l"
-            style={{ borderTop: "1px solid var(--border)", borderLeftColor: "var(--border)" }}
+            className="mt-5 pt-5 border-t md:mt-0 md:pt-0 md:pl-8 md:border-t-0 md:border-l"
+            style={{ borderColor: "var(--border)" }}
           >
             <h3 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
               The Story So Far
