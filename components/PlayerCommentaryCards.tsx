@@ -9,7 +9,7 @@ export function PlayerCommentaryCards({ round }: { round: Round }) {
   if (cards.length === 0) return null
 
   return (
-    <section className="mx-4 my-4 space-y-3 sm:mx-6">
+    <section className="mx-4 my-4 grid gap-3 sm:mx-6 sm:grid-cols-2 lg:grid-cols-4">
       {cards.map(({ player, text }) => (
         <article
           key={player.id}
