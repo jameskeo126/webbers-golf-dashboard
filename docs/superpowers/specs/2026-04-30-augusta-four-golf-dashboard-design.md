@@ -64,32 +64,64 @@ data/
   types.ts        // Player, Hole, Scorecard, Round, Commentary types (mirrors brief's Firestore shapes)
   players.ts      // PLAYERS: 4 entries with id, displayName, username, flag
   course.ts       // HOLE_PARS[18], FRONT_9_PAR=36, BACK_9_PAR=36, TOTAL_PAR=72
-  rounds.ts       // ROUNDS: 4 entries — round metadata + scorecards (per player) + commentary
+  rounds.ts       // ROUNDS: 4 entries + SEASON_COMMENTARY top-level export
 ```
 
-`rounds.ts` shape (one consolidated array):
+#### Type definitions
+
+The `Hole` type stores only raw input — `result` is **never stored**, always computed via `lib/scoreUtils.ts → computeResult(strokes, par)`. This eliminates duplicate-source-of-truth risk between stored result and stroke math.
 
 ```ts
-export const ROUNDS: Round[] = [
-  {
-    id: "round_1",
-    roundNumber: 1,
-    label: "Day 1",
-    status: "in_progress",
-    scorecards: {
-      sam:   { holes: [...], front9Strokes, front9ToPar, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
-      josh:  { holes: [...], ... },
-      jamie: { holes: [...], ... },
-      keo:   { holes: [...], ... },
-    },
-    commentary: {
-      players: { sam: "...", josh: "...", jamie: "...", keo: "..." },
-      summary: "...",
-      season: "..."   // season-level commentary lives on the most recent round, or extracted to a top-level field
-    }
-  },
-  // round_2, round_3, round_4 — fully stubbed with null strokes/results
-]
+type PlayerId = "sam" | "josh" | "jamie" | "keo"
+
+type ResultClass =
+  | "eagle_or_better"
+  | "birdie"
+  | "par"
+  | "bogey"
+  | "double_bogey_plus"
+
+type Hole = {
+  holeNumber: number     // 1–18
+  par: number
+  strokes: number | null // null if not yet played
+}
+
+type Scorecard = {
+  holes: Hole[]          // exactly 18
+  // Round-level totals stored explicitly so Claude Code can be deliberate about partial vs complete state.
+  // Keep these in sync with holes when editing — derivable but stored for clarity.
+  front9Strokes: number | null
+  front9ToPar:   number | null
+  back9Strokes:  number | null
+  back9ToPar:    number | null
+  totalStrokes:  number | null
+  totalToPar:    number | null
+}
+
+type RoundCommentary = {
+  players: Partial<Record<PlayerId, string>>  // missing keys render no card
+  summary: string | null                       // round_summary, null if not yet written
+}
+
+type Round = {
+  id: string                          // "round_1" .. "round_4"
+  roundNumber: 1 | 2 | 3 | 4
+  label: string                       // "Day 1" .. "Day 4"
+  status: "in_progress" | "complete"
+  scorecards: Record<PlayerId, Scorecard>
+  commentary: RoundCommentary
+}
+```
+
+#### `rounds.ts` exports
+
+```ts
+export const ROUNDS: Round[] = [ /* round_1 (Day 1) seeded; round_2-4 fully stubbed with null strokes */ ]
+
+// Season commentary is a single string updated each time scores are added.
+// Top-level export — does NOT live inside any individual round.
+export const SEASON_COMMENTARY: string | null = "..."  // null until written
 ```
 
 ### Derived layer — `lib/`
@@ -98,14 +130,52 @@ Pure functions that compute derived state on render. Nothing is stored — deriv
 
 ```
 lib/
-  leaderboard.ts   // computeLeaderboard(rounds): rows sorted by total to par
-  holeWinners.ts   // computeHoleWinner(roundId, holeNumber): "sam" | "josh" | "jamie" | "keo" | "tie" | null
-                   //   returns null when any of the 4 players has a null score for that hole
-  playerStats.ts   // computePlayerStats(playerId, rounds): { eagles, birdies, pars, bogeys, doubleBogeyPlus,
-                   //   holesWon, holesLost, holesTied, bestRound, scoringAverage }
-  scoreUtils.ts    // formatToPar(n): "-4" | "+2" | "E" | "—"
-                   // resultClass(result): Tailwind class names for cell styling
+  scoreUtils.ts    // computeResult(strokes, par): ResultClass | null  (null when strokes is null)
+                   // formatToPar(n): "-4" | "+2" | "E" | "—"
+                   // resultBgClass(result): Tailwind/CSS class names for cell background
+                   // resultIcon(result): JSX-friendly icon descriptor
+
+  leaderboard.ts   // computeLeaderboard(rounds): LeaderboardRow[]
+  holeWinners.ts   // computeHoleWinner(roundId, holeNumber): PlayerId | "tie" | null
+  playerStats.ts   // computePlayerStats(playerId, rounds): PlayerStats
 ```
+
+#### `computeLeaderboard` rules
+
+For each player, computes `r1ToPar`, `r2ToPar`, `r3ToPar`, `r4ToPar`, and `totalToPar`:
+
+- A round contributes its `totalToPar` if the round's `status === "complete"`. Otherwise it contributes the **running** to-par across whichever holes have non-null strokes (computed on the fly: sum of strokes − sum of pars across played holes). For Day 1 front 9 only, this means R1 displays `-4` for Sam, `-2` for Josh and Keo, `-1` for Jamie.
+- If a player has zero non-null holes in a round, the round column renders `—` and contributes 0 to the running total.
+- `totalToPar` is the sum of all played-hole contributions across all 4 rounds.
+
+Sort order:
+1. Primary: ascending by `totalToPar` (lower is better — under par wins)
+2. Tie-break: stable order from the `PLAYERS` array (Sam → Josh → Jamie → Keo)
+3. Position display: tied players share `T` prefix — e.g. Josh and Keo both at -2 render as `T2`, with the next non-tied player at position 4 (standard golf scoring convention).
+
+#### `computeHoleWinner` rules
+
+Given a `roundId` and `holeNumber`:
+- If any of the 4 players has `strokes === null` for that hole → return `null` (not enough data)
+- If exactly one player has the lowest stroke count → return that `PlayerId`
+- If two or more players tie for the lowest → return `"tie"`
+
+#### `computePlayerStats` null-handling rules
+
+For a given player across all rounds:
+
+| Field | Definition | Null-handling |
+|---|---|---|
+| `eagles` | count of holes where `strokes <= par - 2` | skip null-stroke holes |
+| `birdies` | count of holes where `strokes === par - 1` | skip null-stroke holes |
+| `pars` | count of holes where `strokes === par` | skip null-stroke holes |
+| `bogeys` | count of holes where `strokes === par + 1` | skip null-stroke holes |
+| `doubleBogeyPlus` | count of holes where `strokes >= par + 2` | skip null-stroke holes |
+| `holesWon` | count of holes where `computeHoleWinner` returns this player's id | only counts holes with a determined winner |
+| `holesLost` | count of holes where another player had the lowest score and this player did not tie for it | only counts holes with a determined winner |
+| `holesTied` | count of holes where `computeHoleWinner` returns `"tie"` AND this player was among the tied lowest | only counts holes with a determined winner |
+| `bestRound` | lowest `totalToPar` across rounds where `status === "complete"` | returns `null` if no round is complete |
+| `scoringAverage` | sum of all non-null strokes / count of non-null holes | returns `null` if no holes played |
 
 ### Page & component structure — `app/` and `components/`
 
@@ -224,8 +294,8 @@ When new scorecard data arrives:
 1. Developer starts a new Claude Code session, attaches scorecard screenshots
 2. Claude Code reads scores from the images
 3. Claude Code edits `data/rounds.ts` directly (Edit tool), updating:
-   - Player hole scores and result classifications
-   - Round-level totals (front9, back9, total)
+   - Player hole `strokes` values (result classes are computed, never stored)
+   - Round-level totals (front9, back9, total) — kept in sync with hole strokes
    - Round status (`in_progress` → `complete` when all 18 holes have non-null strokes for all 4 players)
 4. Claude Code drafts commentary in the conversation using the tone prompt from the brief, then writes the strings into the same `rounds.ts` file
 5. `git add . && git commit -m "..." && git push`
@@ -272,7 +342,7 @@ personally. Do not be polite. Do not hedge. Do not be kind.
 
 ## Seed Data — Day 1 Front 9
 
-From the brief (totals computed from hole scores):
+Only `Strokes` is stored. The `Result` row below is shown for verification only — it is computed at render time by `computeResult(strokes, par)`.
 
 **Sam Clifford** — front9Strokes 32, front9ToPar -4
 
@@ -280,25 +350,29 @@ From the brief (totals computed from hole scores):
 |---|---|---|---|---|---|---|---|---|---|
 | Par | 4 | 5 | 4 | 3 | 4 | 3 | 4 | 5 | 4 |
 | Strokes | 4 | 3 | 3 | 2 | 3 | 3 | 4 | 5 | 5 |
-| Result | par | eagle+ | birdie | birdie | birdie | par | par | par | bogey |
+| Result (computed) | par | eagle_or_better | birdie | birdie | birdie | par | par | par | bogey |
 
 **Hames Keo** — front9Strokes 34, front9ToPar -2
 
 | Hole | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|
 | Strokes | 6 | 3 | 3 | 4 | 3 | 3 | 5 | 4 | 3 |
-| Result | dbogey+ | eagle+ | birdie | bogey | birdie | par | bogey | birdie | birdie |
+| Result (computed) | double_bogey_plus | eagle_or_better | birdie | bogey | birdie | par | bogey | birdie | birdie |
 
 **Jamie Maclaren** — front9Strokes 35, front9ToPar -1
 
 | Hole | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 |
 |---|---|---|---|---|---|---|---|---|---|
 | Strokes | 4 | 4 | 4 | 3 | 4 | 3 | 4 | 5 | 4 |
-| Result | par | birdie | par | par | par | par | par | par | par |
+| Result (computed) | par | birdie | par | par | par | par | par | par | par |
 
-**Josh Dally** — front9Strokes 34 (inferred), front9ToPar -2 (confirmed leaderboard total). Hole-by-hole strokes are `null`, results are `null`.
+**Josh Dally** — `front9Strokes: 34` (inferred), `front9ToPar: -2` (confirmed leaderboard total). Hole-by-hole `strokes` are all `null`. `computeResult` returns `null` for each.
 
-Hole-by-hole winners for Day 1 holes 1–9: all `null` (Josh's per-hole scores not available).
+For all 4 players, `back9Strokes`, `back9ToPar`, `totalStrokes`, and `totalToPar` are `null` for Day 1 (back 9 not played).
+
+Hole-by-hole winners for Day 1 holes 1–9: all `null` (Josh's per-hole scores not available, so `computeHoleWinner` cannot determine a winner per its rules).
+
+Rounds 2–4: every player's scorecard has all 18 holes with `strokes: null`, all round-level totals `null`, status `"in_progress"`, commentary empty (`{ players: {}, summary: null }`).
 
 ## Players (from brief)
 
@@ -320,15 +394,16 @@ const HOLE_PARS = [4, 5, 4, 3, 4, 3, 4, 5, 4, 4, 4, 3, 5, 4, 5, 3, 4, 4]
 
 ## Success Criteria
 
-- [ ] Dashboard renders at `localhost:3000` showing Day 1 front 9 data
-- [ ] Leaderboard shows Sam (-4), Josh (-2), Keo (-2), Jamie (-1) for Day 1 (with appropriate tie ordering)
-- [ ] Scorecard for Day 1 displays correct hole-by-hole strokes for Sam, Jamie, Keo; "—" for Josh's holes
-- [ ] All 4 player commentary cards render (Josh's may be short or note that hole-by-hole detail is missing)
-- [ ] Theme toggle works and persists across page reloads
-- [ ] Scorecard scrolls horizontally on a 390px viewport without squashing or reformatting
-- [ ] Hole winner highlight applied correctly when all 4 players have data; absent when any player is missing data
-- [ ] Stats panel toggle reveals computed stats for all 4 players
-- [ ] Public Vercel URL loads with no login required
+- [ ] Dashboard renders cleanly at `localhost:3000` with the actual launch data state: Day 1 front 9 scores partially populated (Josh's per-hole strokes null), Days 2–4 fully empty. No crashes, no empty-state errors, no NaNs.
+- [ ] Leaderboard for Day 1 displays positions in this order: `1` Sam (-4), `T2` Josh (-2), `T2` Keo (-2), `4` Jamie (-1). Ties share the `T` prefix; tie-break order between Josh and Keo follows the `PLAYERS` array (Josh first).
+- [ ] Leaderboard `R1` column shows running to-par across played holes for each player (-4, -2, -2, -1). `R2`/`R3`/`R4` columns render `—`. `TOTAL` matches `R1`.
+- [ ] Scorecard for Day 1 displays correct hole-by-hole strokes for Sam, Jamie, Keo; `—` for all of Josh's hole cells; result-class background and icon applied correctly to each cell with strokes.
+- [ ] At least one commentary card renders if commentary text is present; missing player commentary keys render no card (no empty card placeholders).
+- [ ] Theme toggle switches between dark and light modes and persists across page reloads via `localStorage`. No FOUC on initial load.
+- [ ] Scorecard scrolls horizontally on a 390px viewport without squashing or reformatting; vertical layout is uncluttered.
+- [ ] Hole-winner highlight is absent on all Day 1 front 9 cells (Josh's data missing, so `computeHoleWinner` returns `null` for each).
+- [ ] Stats panel toggle reveals computed stats for all 4 players. `bestRound` and `scoringAverage` for Josh render `—` (no completed round, no non-null strokes); other players show partial stats from their played holes.
+- [ ] Public Vercel URL loads with no login required.
 
 ## Open Questions / Deferred
 
