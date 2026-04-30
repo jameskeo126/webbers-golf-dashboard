@@ -10,9 +10,9 @@ const themeInitScript = `
 (function() {
   try {
     var stored = localStorage.getItem('theme');
-    var theme = stored || 'dark';
+    var theme = stored || 'light';
     if (theme === 'dark') document.documentElement.classList.add('dark');
-  } catch (e) { document.documentElement.classList.add('dark'); }
+  } catch (e) {}
 })();
 `.trim()
 
