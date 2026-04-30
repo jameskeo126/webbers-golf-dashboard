@@ -1,15 +1,26 @@
+"use client"
+
+import { useState } from "react"
 import { Header } from "@/components/Header"
 import { Leaderboard } from "@/components/Leaderboard"
-import { Scorecard } from "@/components/Scorecard"
+import { SeasonCommentary } from "@/components/SeasonCommentary"
+import { RoundTabs } from "@/components/RoundTabs"
+import { RoundDetail } from "@/components/RoundDetail"
+import { StatsPanel } from "@/components/StatsPanel"
 import { ROUNDS } from "@/data/rounds"
 
 export default function HomePage() {
-  const round1 = ROUNDS.find(r => r.roundNumber === 1)!
+  const [selectedRound, setSelectedRound] = useState<1 | 2 | 3 | 4>(1)
+  const round = ROUNDS.find(r => r.roundNumber === selectedRound)!
+
   return (
-    <main>
+    <main className="min-h-screen pb-12">
       <Header />
       <Leaderboard />
-      <Scorecard round={round1} />
+      <SeasonCommentary />
+      <RoundTabs selected={selectedRound} onSelect={setSelectedRound} />
+      <RoundDetail round={round} />
+      <StatsPanel />
     </main>
   )
 }
