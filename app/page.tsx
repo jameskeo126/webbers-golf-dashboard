@@ -5,7 +5,8 @@ import { Header } from "@/components/Header"
 import { Leaderboard } from "@/components/Leaderboard"
 import { SeasonCommentary } from "@/components/SeasonCommentary"
 import { RoundTabs } from "@/components/RoundTabs"
-import { RoundDetail } from "@/components/RoundDetail"
+import { Scorecard } from "@/components/Scorecard"
+import { PlayerCommentaryCards } from "@/components/PlayerCommentaryCards"
 import { StatsPanel } from "@/components/StatsPanel"
 import { ROUNDS } from "@/data/rounds"
 
@@ -18,8 +19,11 @@ export default function HomePage() {
       <Header />
       <Leaderboard />
       <SeasonCommentary />
-      <RoundTabs selected={selectedRound} onSelect={setSelectedRound} />
-      <RoundDetail round={round} />
+      <Scorecard
+        round={round}
+        tabs={<RoundTabs selected={selectedRound} onSelect={setSelectedRound} />}
+      />
+      <PlayerCommentaryCards round={round} />
       <StatsPanel />
     </main>
   )

@@ -1,4 +1,5 @@
 import type { Round } from "@/data/types"
+import type { ReactNode } from "react"
 import { PLAYERS } from "@/data/players"
 import { HOLE_PARS, FRONT_9_PAR, BACK_9_PAR } from "@/data/course"
 import { ScoreCell } from "./ScoreCell"
@@ -15,7 +16,7 @@ function sumStrokes(holes: { strokes: number | null }[], from: number, to: numbe
   return any ? sum : null
 }
 
-export function Scorecard({ round }: { round: Round }) {
+export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
   const totalCellStyle = { border: "1px solid var(--border)", color: "var(--text-primary)" }
   const headerCellStyle = { color: "var(--text-muted)", border: "1px solid var(--border)" }
 
@@ -24,8 +25,9 @@ export function Scorecard({ round }: { round: Round }) {
       className="mx-4 my-4 rounded-2xl p-4 sm:mx-6 sm:p-6"
       style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border)" }}
     >
+      {tabs}
       <h3 className="text-lg font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
-        {round.label} scorecard
+        Scorecard
       </h3>
       <div className="overflow-x-auto">
         <table className="border-collapse tabular text-xs sm:text-sm">
@@ -101,7 +103,7 @@ export function Scorecard({ round }: { round: Round }) {
           style={{ borderTop: "1px solid var(--border)" }}
         >
           <h4 className="text-base font-semibold mb-3" style={{ color: "var(--text-primary)" }}>
-            {round.label} — the take
+            The take
           </h4>
           <div className="leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
             {round.commentary.summary.split("\n\n").map((para, i) => (

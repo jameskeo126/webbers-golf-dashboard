@@ -13,7 +13,7 @@ export function RoundTabs({
     <nav
       role="tablist"
       aria-label="Round selector"
-      className="mx-4 my-4 flex gap-2 overflow-x-auto sm:mx-6"
+      className="mb-4 flex gap-2 overflow-x-auto"
     >
       {ROUNDS.map(round => {
         const isSelected = round.roundNumber === selected
