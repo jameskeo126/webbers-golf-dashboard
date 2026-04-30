@@ -30,7 +30,7 @@ function PlayerCard({
 
   return (
     <article
-      className="snap-start shrink-0 w-[calc(100vw-2rem)] sm:w-auto sm:shrink rounded-2xl p-4 sm:p-5 flex flex-col"
+      className="snap-start shrink-0 w-[calc(100vw-4rem)] sm:w-auto sm:shrink rounded-2xl p-4 sm:p-5 flex flex-col"
       style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border)" }}
     >
       <header className="mb-3 flex items-center gap-2">
