@@ -42,14 +42,14 @@ function PlayerCard({
       {paragraphs.length > 0 ? (
         <div className="mb-4">
           {open ? (
-            <div className="leading-relaxed space-y-3 text-sm" style={{ color: "var(--text-muted)" }}>
+            <div className="leading-relaxed space-y-3" style={{ color: "var(--text-muted)" }}>
               {paragraphs.map((para, i) => (
                 <p key={i}>{para}</p>
               ))}
             </div>
           ) : (
             <p
-              className="leading-relaxed text-sm line-clamp-3"
+              className="leading-relaxed line-clamp-3"
               style={{ color: "var(--text-muted)" }}
             >
               {paragraphs[0]}
