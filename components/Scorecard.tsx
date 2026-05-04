@@ -54,28 +54,28 @@ export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
                 Hole
               </th>
               {Array.from({ length: 9 }, (_, i) => (
-                <th key={i} className="h-10 min-w-[24px] sm:w-16 text-center font-medium" style={headerCellStyle}>{i + 1}</th>
+                <th key={i} className="h-10 min-w-[30px] sm:w-16 text-center font-medium" style={headerCellStyle}>{i + 1}</th>
               ))}
-              <th className="h-10 min-w-[24px] sm:w-20 text-center font-semibold" style={headerCellStyle}>OUT</th>
+              <th className="h-10 min-w-[30px] sm:w-20 text-center font-semibold" style={headerCellStyle}>OUT</th>
               {Array.from({ length: 9 }, (_, i) => (
-                <th key={i + 9} className="h-10 min-w-[24px] sm:w-16 text-center font-medium" style={headerCellStyle}>{i + 10}</th>
+                <th key={i + 9} className="h-10 min-w-[30px] sm:w-16 text-center font-medium" style={headerCellStyle}>{i + 10}</th>
               ))}
-              <th className="h-10 min-w-[24px] sm:w-20 text-center font-semibold" style={headerCellStyle}>IN</th>
-              <th className="h-10 min-w-[24px] sm:w-20 text-center font-semibold" style={headerCellStyle}>TOT</th>
+              <th className="h-10 min-w-[30px] sm:w-20 text-center font-semibold" style={headerCellStyle}>IN</th>
+              <th className="h-10 min-w-[30px] sm:w-20 text-center font-semibold" style={headerCellStyle}>TOT</th>
             </tr>
             <tr>
               <td className="sticky left-0 px-2 py-1 text-left" style={{ backgroundColor: "var(--bg-surface)", color: "var(--text-muted)" }}>
                 Par
               </td>
               {HOLE_PARS.slice(0, 9).map((p, i) => (
-                <td key={i} className="h-10 min-w-[24px] sm:w-16 text-center" style={headerCellStyle}>{p}</td>
+                <td key={i} className="h-10 min-w-[30px] sm:w-16 text-center" style={headerCellStyle}>{p}</td>
               ))}
-              <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold" style={headerCellStyle}>{FRONT_9_PAR}</td>
+              <td className="h-10 min-w-[30px] sm:w-20 text-center font-semibold" style={headerCellStyle}>{FRONT_9_PAR}</td>
               {HOLE_PARS.slice(9).map((p, i) => (
-                <td key={i + 9} className="h-10 min-w-[24px] sm:w-16 text-center" style={headerCellStyle}>{p}</td>
+                <td key={i + 9} className="h-10 min-w-[30px] sm:w-16 text-center" style={headerCellStyle}>{p}</td>
               ))}
-              <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold" style={headerCellStyle}>{BACK_9_PAR}</td>
-              <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold" style={headerCellStyle}>{FRONT_9_PAR + BACK_9_PAR}</td>
+              <td className="h-10 min-w-[30px] sm:w-20 text-center font-semibold" style={headerCellStyle}>{BACK_9_PAR}</td>
+              <td className="h-10 min-w-[30px] sm:w-20 text-center font-semibold" style={headerCellStyle}>{FRONT_9_PAR + BACK_9_PAR}</td>
             </tr>
           </thead>
           <tbody>
@@ -92,16 +92,16 @@ export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
                   {sc.holes.slice(0, 9).map(hole => (
                     <ScoreCell key={hole.holeNumber} strokes={hole.strokes} par={hole.par} />
                   ))}
-                  <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
+                  <td className="h-10 min-w-[30px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
                     {out === null ? "—" : out}
                   </td>
                   {sc.holes.slice(9).map(hole => (
                     <ScoreCell key={hole.holeNumber} strokes={hole.strokes} par={hole.par} />
                   ))}
-                  <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
+                  <td className="h-10 min-w-[30px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
                     {inn === null ? "—" : inn}
                   </td>
-                  <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
+                  <td className="h-10 min-w-[30px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
                     {tot === null ? "—" : tot}
                   </td>
                 </tr>

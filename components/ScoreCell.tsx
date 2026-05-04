@@ -5,7 +5,7 @@ export function ScoreCell({ strokes, par }: { strokes: number | null; par: numbe
   const result = computeResult(strokes, par)
   return (
     <td
-      className="relative h-10 min-w-[24px] sm:w-16 text-center tabular text-sm font-medium"
+      className="relative h-10 min-w-[30px] sm:w-16 text-center tabular text-sm font-medium"
       style={{
         color: strokes === null ? "var(--text-muted)" : "var(--text-primary)",
         border: "1px solid var(--border)",
