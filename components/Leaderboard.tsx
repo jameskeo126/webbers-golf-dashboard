@@ -4,6 +4,7 @@ import { computeLeaderboard } from "@/lib/leaderboard"
 import { formatToPar } from "@/lib/scoreUtils"
 import type { LeaderboardRow } from "@/data/types"
 import { ExpandableProse } from "./ExpandableProse"
+import { Avatar } from "./Avatar"
 
 function scoreTextColor(toPar: number | null): string {
   return toPar === null ? "var(--text-muted)" : "var(--text-primary)"
@@ -12,8 +13,8 @@ function scoreTextColor(toPar: number | null): string {
 function PlayerCell({ row }: { row: LeaderboardRow }) {
   const player = PLAYERS.find(p => p.id === row.playerId)!
   return (
-    <span className="flex items-center gap-1.5">
-      <span aria-hidden="true">{player.flag}</span>
+    <span className="flex items-center gap-2">
+      <Avatar player={player} size={28} />
       <span className="hidden sm:inline">{player.displayName}</span>
       <span className="sm:hidden">{player.displayName.split(" ")[0]}</span>
     </span>

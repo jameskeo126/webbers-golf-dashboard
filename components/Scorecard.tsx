@@ -86,9 +86,8 @@ export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
               const tot = (out !== null && inn !== null) ? out + inn : null
               return (
                 <tr key={player.id}>
-                  <td className="sticky left-0 pl-1 pr-3 py-1 text-left whitespace-nowrap text-sm font-semibold" style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border)", color: "var(--text-primary)" }}>
-                    <span className="mr-1.5" aria-hidden="true">{player.flag}</span>
-                    <span>{player.displayName.split(" ")[0]}</span>
+                  <td className="sticky left-0 px-3 py-1 text-left whitespace-nowrap text-sm font-semibold" style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border)", color: "var(--text-primary)" }}>
+                    {player.displayName.split(" ")[0]}
                   </td>
                   {sc.holes.slice(0, 9).map(hole => (
                     <ScoreCell key={hole.holeNumber} strokes={hole.strokes} par={hole.par} />

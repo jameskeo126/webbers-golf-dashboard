@@ -6,6 +6,7 @@ import { PLAYERS } from "@/data/players"
 import { ROUNDS } from "@/data/rounds"
 import { computePlayerStats } from "@/lib/playerStats"
 import { formatToPar } from "@/lib/scoreUtils"
+import { Avatar } from "./Avatar"
 
 function StatRow({ label, value }: { label: string; value: string | number }) {
   return (
@@ -33,8 +34,8 @@ function PlayerCard({
       className="snap-start shrink-0 w-[calc(100vw-4rem)] sm:w-auto sm:shrink rounded-2xl p-4 sm:p-5 flex flex-col"
       style={{ backgroundColor: "var(--bg-surface)", border: "1px solid var(--border)" }}
     >
-      <header className="mb-3 flex items-center gap-2">
-        <span aria-hidden="true">{player.flag}</span>
+      <header className="mb-3 flex items-center gap-3">
+        <Avatar player={player} size={40} />
         <h4 className="text-base font-semibold" style={{ color: "var(--text-primary)" }}>
           {player.displayName}
         </h4>

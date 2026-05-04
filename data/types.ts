@@ -11,7 +11,8 @@ export type Player = {
   id: PlayerId
   displayName: string
   username: string
-  flag: string
+  /** Path to a circular avatar image, e.g. "/avatars/sam.jpg". Null until provided. */
+  avatar: string | null
 }
 
 export type Hole = {
