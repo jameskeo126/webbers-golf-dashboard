@@ -1,9 +1,25 @@
-import type { Round } from "@/data/types"
+import type { Round, ResultClass } from "@/data/types"
 import type { ReactNode } from "react"
 import { PLAYERS } from "@/data/players"
 import { HOLE_PARS, FRONT_9_PAR, BACK_9_PAR } from "@/data/course"
 import { ScoreCell } from "./ScoreCell"
+import { ResultIcon } from "./ResultIcon"
 import { ExpandableProse } from "./ExpandableProse"
+
+function LegendEntry({ result, sample, label }: { result: ResultClass; sample: number; label: string }) {
+  return (
+    <span className="flex items-center gap-2" style={{ color: "var(--text-muted)" }}>
+      <span
+        className="relative inline-flex h-7 w-7 items-center justify-center tabular text-sm font-medium"
+        style={{ color: "var(--text-primary)" }}
+      >
+        <ResultIcon result={result} />
+        <span className="relative z-10">{sample}</span>
+      </span>
+      <span>{label}</span>
+    </span>
+  )
+}
 
 function sumStrokes(holes: { strokes: number | null }[], from: number, to: number): number | null {
   let sum = 0
@@ -75,13 +91,13 @@ export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
                     <span>{player.displayName.split(" ")[0]}</span>
                   </td>
                   {sc.holes.slice(0, 9).map(hole => (
-                    <ScoreCell key={hole.holeNumber} strokes={hole.strokes} />
+                    <ScoreCell key={hole.holeNumber} strokes={hole.strokes} par={hole.par} />
                   ))}
                   <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
                     {out === null ? "—" : out}
                   </td>
                   {sc.holes.slice(9).map(hole => (
-                    <ScoreCell key={hole.holeNumber} strokes={hole.strokes} />
+                    <ScoreCell key={hole.holeNumber} strokes={hole.strokes} par={hole.par} />
                   ))}
                   <td className="h-10 min-w-[24px] sm:w-20 text-center font-semibold tabular" style={totalCellStyle}>
                     {inn === null ? "—" : inn}
@@ -95,7 +111,13 @@ export function Scorecard({ round, tabs }: { round: Round; tabs?: ReactNode }) {
           </tbody>
         </table>
       </div>
-      <p className="mt-3 text-xs" style={{ color: "var(--text-muted)" }}>
+      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2 text-xs sm:text-sm">
+        <LegendEntry result="birdie" sample={3} label="Birdie" />
+        <LegendEntry result="eagle_or_better" sample={2} label="Eagle or Better" />
+        <LegendEntry result="bogey" sample={5} label="Bogey" />
+        <LegendEntry result="double_bogey_plus" sample={6} label="Double Bogey+" />
+      </div>
+      <p className="mt-3 text-xs sm:hidden" style={{ color: "var(--text-muted)" }}>
         Scroll horizontally to see all 18 holes.
       </p>
       {round.commentary.summary ? (
