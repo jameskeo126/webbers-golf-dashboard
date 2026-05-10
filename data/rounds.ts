@@ -36,21 +36,21 @@ const r1Scorecards: Record<PlayerId, Scorecard> = {
   keo:   { holes: keo_r1,   front9Strokes: 34, front9ToPar: -2, back9Strokes: 31, back9ToPar: -5, totalStrokes: 65, totalToPar: -7 },
 }
 
-// Day 2 — front 9 played, back 9 not yet.
-// Sam: 4,4,4,3,4,2,3,5,3 → 32 strokes, -4
-const sam_r2 = holesFromStrokes([4,4,4,3,4,2,3,5,3,  null,null,null,null,null,null,null,null,null])
-// Keo: 5,3,3,3,3,3,3,4,3 → 30 strokes, -6 (day's best)
-const keo_r2 = holesFromStrokes([5,3,3,3,3,3,3,4,3,  null,null,null,null,null,null,null,null,null])
-// Jamie: 3,4,4,3,3,2,5,4,3 → 31 strokes, -5
-const jamie_r2 = holesFromStrokes([3,4,4,3,3,2,5,4,3, null,null,null,null,null,null,null,null,null])
-// Josh: 4,3,3,4,4,2,3,4,4 → 31 strokes, -5
-const josh_r2 = holesFromStrokes([4,3,3,4,4,2,3,4,4, null,null,null,null,null,null,null,null,null])
+// Day 2 — complete.
+// Sam: front 4,4,4,3,4,2,3,5,3 (32, -4) + back 4,3,3,3,3,4,3,3,3 (29, -7) = 61, -11
+const sam_r2 = holesFromStrokes([4,4,4,3,4,2,3,5,3,  4,3,3,3,3,4,3,3,3])
+// Keo: front 5,3,3,3,3,3,3,4,3 (30, -6) + back 3,4,3,4,3,4,3,3,4 (31, -5) = 61, -11
+const keo_r2 = holesFromStrokes([5,3,3,3,3,3,3,4,3,  3,4,3,4,3,4,3,3,4])
+// Jamie: front 3,4,4,3,3,2,5,4,3 (31, -5) + back 4,3,2,4,3,3,3,3,5 (30, -6) = 61, -11
+const jamie_r2 = holesFromStrokes([3,4,4,3,3,2,5,4,3, 4,3,2,4,3,3,3,3,5])
+// Josh: front 4,3,3,4,4,2,3,4,4 (31, -5) + back 3,4,4,4,3,4,3,3,3 (31, -5) = 62, -10
+const josh_r2 = holesFromStrokes([4,3,3,4,4,2,3,4,4, 3,4,4,4,3,4,3,3,3])
 
 const r2Scorecards: Record<PlayerId, Scorecard> = {
-  sam:   { holes: sam_r2,   front9Strokes: 32, front9ToPar: -4, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
-  josh:  { holes: josh_r2,  front9Strokes: 31, front9ToPar: -5, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
-  jamie: { holes: jamie_r2, front9Strokes: 31, front9ToPar: -5, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
-  keo:   { holes: keo_r2,   front9Strokes: 30, front9ToPar: -6, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  sam:   { holes: sam_r2,   front9Strokes: 32, front9ToPar: -4, back9Strokes: 29, back9ToPar: -7, totalStrokes: 61, totalToPar: -11 },
+  josh:  { holes: josh_r2,  front9Strokes: 31, front9ToPar: -5, back9Strokes: 31, back9ToPar: -5, totalStrokes: 62, totalToPar: -10 },
+  jamie: { holes: jamie_r2, front9Strokes: 31, front9ToPar: -5, back9Strokes: 30, back9ToPar: -6, totalStrokes: 61, totalToPar: -11 },
+  keo:   { holes: keo_r2,   front9Strokes: 30, front9ToPar: -6, back9Strokes: 31, back9ToPar: -5, totalStrokes: 61, totalToPar: -11 },
 }
 
 function emptyRound(roundNumber: 1 | 2 | 3 | 4, label: string): Round {
@@ -110,51 +110,53 @@ Three strokes is gettable in three days. Three strokes from Sam, when Sam is sho
     id: "round_2",
     roundNumber: 2,
     label: "Day 2",
-    status: "in_progress",
+    status: "complete",
     scorecards: r2Scorecards,
     commentary: {
       players: {
-        sam: `Sam followed up his -10 opening with a... -4 front nine. After yesterday's runaway, the rest of us were prepared for another massacre. Instead we got birdies on 2, 6, 7 and 9, five pars, no eagles, no chaos. Solid. Acceptable. Ordinary.
+        sam: `Sam Clifford shot a SIXTY-ONE on Day 2. To follow up the SIXTY-TWO from Day 1. Across 36 holes at Augusta National he is now -21. One bogey total in the entire tournament so far.
 
-Ordinary is a LOSING vibe when the chasing pack is putting on -5 and -6 cards behind you. Keo just shot -6. Keo. Your three-stroke lead is now a one-stroke lead and the back 9 hasn't even started.
+The front 9 today was a flat -4, which had the rest of us briefly believing the gap was closing. Then Sam went out and shot a 29 on the back. Eagle on hole 13. Birdies on 11, 14, 15, 17 and 18. Three pars, no bogeys. Twenty-nine strokes, the lowest back 9 of the tournament by anyone so far.
 
-We're not panicking on Sam's behalf yet. But the practice block has clearly worn off and the chase is on.`,
+-21 for the season, three strokes clear of Jamie and Keo (T2 at -18). The wobble was a feint. Sam responded to the entire chasing pack catching up to within a stroke by shooting the lowest back 9 we have on record. The man is a monster.`,
 
-        josh: `Josh, the audit notes an improvement: every hole on Day 2's front nine is filed and itemised. -5 with an eagle on hole 2, three more birdies, one bogey on hole 4 (a four on a par three — sloppy), and three pars.
+        josh: `Josh's back 9 was -5: six birdies (10, 13, 14, 15, 17 and 18), two pars, and the now-traditional Dally Bogey on hole 12 — a four on a par 3, which is a special kind of inefficiency.
 
-Day 1's front 9 mystery, however, remains officially unresolved. We have not forgotten. Until those nine numbers turn up, joshdally is the only player whose tournament has a missing chapter.
+62 for the day, 127 strokes across two rounds, -17 for the tournament. Sole 4th place, one stroke off the T2 pack. Josh has now filed complete per-hole cards on three of four 9-hole batches. The Day 1 front 9 audit remains OFFICIALLY OPEN. We have not forgotten.
 
-Tied for third at -12 with Jamie. One stroke off the lead. Sam wobbled, Keo capitalised, you held station. Decent. Now show us a back 9 with no inexplicable redactions.`,
+A 62 is a great round in any tournament that isn't this one. Sam shot a 61 today on top of the 62 he shot yesterday. Josh is four strokes behind a man who has bogeyed exactly one hole in 36 played. The chase is, charitably, uphill.`,
 
-        jamie: `The new Jamie continues. Birdie hole 1. Birdie hole 2. Two pars, then a four-birdie streak across 5, 6, 8 and 9. Six birdies in nine holes. ONE bogey on hole 7 (a 5 on a par 4) — the only blemish.
+        jamie: `Jamie shot a sixty-one. Same number Sam shot. Same number Keo shot. Three players, three 61s, no one closed any ground on the leader at all.
 
--5 on the front, T3 with Josh at -12 for the tournament. The metronome label is officially retired. Jamie is now genuinely fun to watch and is one stroke off second place.
+The back 9 was the work of someone who has obviously been studying the leader. Five birdies (11, 12, 14, 17), an eagle on hole 15 (yes — same hole he eagled yesterday, par 5, three on the card both times), two pars, and a closing bogey on 18 because he has to remind us he's human.
 
-If Sam is actually wobbling and Keo holds his nerve, there's a small but real chance the man we called boring 24 hours ago wins this thing.`,
+Day 2 total: -11. Season: -18, tied second with Keo. One day ago we called Jamie a metronome. We have been bleeding since. Sam still leads by three because Jamie's Day 1 was 'only' -7. But Day 2 was a tie at -11 stroke-for-stroke. If this Jamie shows up tomorrow, the lead is in real danger.`,
 
-        keo: `KEO. -6 ON THE FRONT NINE. The lowest score of Day 2 by anyone. The man who opened this tournament with a six on hole one is now ONE stroke behind the leader.
+        keo: `Keo. Look at Keo. The man who opened the tournament with a six on hole one has now shot a 61.
 
-Bogey on hole 1 to start (you can take Keo out of chaos but you can't take chaos out of Keo), then the EAGLE on hole 2, then five birdies (3, 5, 7, 8, 9), and two pars. One bogey, one eagle, five birdies, two pars on the front 9 of Day 2.
+Five birdies (10, 13, 14, 15, 17), four pars, ZERO bogeys on Day 2's back 9. Combined with the front 9 (-6, including the bogey-then-eagle on holes 1 and 2), he shot a 61 today. Same number as Sam. Same number as Jamie.
 
-We don't know what JamesKeo126 was doing in the practice net last night but it's working. -13 for the tournament, outright second. Sam is -14, Keo is -13, the rest are at -12. Sam: stop checking your phone. Keo is coming.`,
+JamesKeo126 is -18 for the tournament, tied second with Jamie. Two consecutive disciplined back 9s (Day 1: 5 birdies + 4 pars + 0 bogeys; Day 2: 5 birdies + 4 pars + 0 bogeys, again). The chaos era is, formally, over. The man is playing actual real golf and we are reluctantly, anxiously, suspiciously impressed.
+
+Three strokes back of Sam. Two rounds remaining. Strap in.`,
       },
-      summary: `Day 2 front 9 — and the Sam Clifford era is on PAUSE. The runaway leader at -10 yesterday managed only a -4 front today while three other players posted -5, -5 and -6. The leaderboard is now: Sam -14, Keo -13, Josh -12, Jamie -12.
+      summary: `Day 2 in the books. Sam shot a 61. Same number as Jamie. Same number as Keo. Josh shot a 62. Sam's three-stroke margin from Day 1 is, somehow, still three strokes after Day 2. The chase didn't close anything.
 
-Keo, of all people, is the day's pace setter at -6 — bogey on hole 1, eagle on hole 2, then five birdies. Vintage chaos producing vintage numbers. He's a single stroke behind Sam.
+Sam's back 9 was a 29. EAGLE on hole 13, birdies on 11, 14, 15, 17, 18, three pars, no bogeys. After the entire field caught up to within a stroke on the front, Sam responded by shooting the lowest back 9 of the tournament so far.
 
-Josh and Jamie both shot -5. Josh produced a complete card (the audit, narrowly, accepts). Jamie added six more birdies to his name and is officially no longer a metronome.
+Jamie's back 9 was also exceptional — 30 strokes with an eagle on hole 15 (back-to-back days he's eagled that hole). Keo posted his second consecutive disciplined back 9: 5 birdies + 4 pars + 0 bogeys. Josh's back 9 had one inefficient bogey on hole 12 but otherwise six birdies and pars.
 
-Back 9 of Day 2 still to come. If Sam's game is genuinely faltering, we may witness an actual leaderboard shake-up. Strap in.`,
+Season after two rounds: Sam -21, Jamie -18 (T2), Keo -18 (T2), Josh -17. Two days, 36 holes remain. The chasing pack needs Sam to wobble. Based on the evidence to date (one bogey total, an eagle on hole 13, a 29 back nine in response to the field catching up), the probability of a Sam wobble is rounding to zero.`,
     },
   },
   emptyRound(3, "Day 3"),
   emptyRound(4, "Day 4"),
 ]
 
-export const SEASON_COMMENTARY: string | null = `Day 2 front 9 in the books and the runaway is over. Sam Clifford still leads but only just: -14 for the tournament, with Keo one stroke behind at -13 and Josh and Jamie tied at -12.
+export const SEASON_COMMENTARY: string | null = `Day 2 is done. Sam shot a 61 today after his 62 yesterday. Across 36 holes he is -21 for the tournament. He has bogeyed exactly one hole in two complete rounds at Augusta.
 
-Sam came out and posted a flat -4 today after yesterday's -10 carnival. Solid, but the chasing pack collectively went -5, -5 and -6 on the same nine holes. Keo of all people is the day's pace setter — a bogey on hole one followed by an eagle and five birdies. The man who opened this tournament with a six on hole one is now one stroke off the lead.
+Jamie and Keo are tied for second at -18 — both also shot 61 today, matching the leader stroke for stroke. The chase is still mathematically alive but the leader has not given an inch since the front 9 of Day 2, when he briefly let the field catch up to within one stroke. He responded by shooting a 29 on the back nine, including an eagle on hole 13. Josh is fourth at -17.
 
-Josh's Day 2 card is fully itemised (the audit on Day 1's front 9 remains pending). Jamie posted six birdies and is officially no longer a metronome.
+Two rounds remaining. 36 holes left. The chasing pack needs a Sam meltdown. Based on the evidence to date — one bogey across 36 holes, a 29 on the back nine in direct response to being chased — the probability of meltdown is approximately the same as the probability of a polite Augusta winter.
 
-Back 9 of Day 2, plus all of Days 3 and 4 — five 9-hole batches still to play. Sam is no longer untouchable. Keo is in the building. Strap in.`
+Day 3 tomorrow. Strap in.`
