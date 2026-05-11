@@ -122,7 +122,7 @@ The front 9 today was a flat -4, which had the rest of us briefly believing the 
 
         josh: `Josh's back 9 was -5: six birdies (10, 13, 14, 15, 17 and 18), two pars, and one bogey on hole 12 — a four on a par 3, which is a special kind of inefficiency.
 
-The defining Josh moment of the night came after he hit a shot that didn't quite shape the way he wanted. "I thought it would come back but it didn't," he says, dead serious. Sam, without looking up: "Just like your hairline." Josh has not recovered. Neither have we. The transplant lobby has filed a complaint.
+He also took at least one verbal hit from Sam over the course of the night that he probably won't be growing back from any time soon.
 
 62 for the day, -17 for the tournament. Sole 4th place, one stroke off the T2 pack. Sam shot a 61 on top of the 62 he shot yesterday. Four strokes back, two rounds to go. The chase is, charitably, uphill.`,
 
@@ -130,9 +130,9 @@ The defining Josh moment of the night came after he hit a shot that didn't quite
 
 The back 9 was the work of someone who has obviously been studying the leader. Five birdies (11, 12, 14, 17), an eagle on hole 15 (yes — same hole he eagled yesterday, par 5, three on the card both times), two pars, and a closing bogey on 18 because he has to remind us he's human.
 
-Special mention to the moment Jamie took it upon himself to coach Sam — the tournament leader, the man shooting a 29 on the back nine — on how to shape his putts. Long explanation, hands waving, full instructor mode. Then he stepped up to his own putt — the easiest putt of the night, conceded territory — and missed it. The silence was a public service.
+Maybe Jamie should keep focused on his own putts.
 
-Day 2 total: -11. Season: -18, tied second with Keo. One day ago we called Jamie a metronome. We have been bleeding since. If this Jamie shows up tomorrow — and keeps his mouth shut on the green — the leader's three-stroke margin is in real danger.`,
+Day 2 total: -11. Season: -18, tied second with Keo. One day ago we called Jamie a metronome. We have been bleeding since. If this Jamie shows up tomorrow the leader's three-stroke margin is in real danger.`,
 
         keo: `Keo. Look at Keo. The man who opened the tournament with a six on hole one has now shot a 61.
 
