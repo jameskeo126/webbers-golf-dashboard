@@ -79,11 +79,11 @@ Front 9 was already an offence: -4 with the eagle on hole 2 and a three-birdie r
 
 Sam Clifford is -10 through one round. The rest of us are tied at -7, three strokes back, looking for the controller's reset button. The only way back into this tournament is a Sam Clifford mid-round nervous breakdown. We will be watching for one.`,
 
-        josh: `Josh quietly turned in a -7 on Day 1. The front 9 was -2 (we'll take it), the back 9 was a clean -5: five birdies (11, 12, 14, 15, 17), four pars, not a single hole over par.
+        josh: `Josh, mate. Josh. The back 9 came in. WITH PER-HOLE NUMBERS. At last.
 
-31 strokes for the back nine is the kind of round you post when you've worked out a process and you're just executing it. No drama, no chaos, no headline moments. Just nine holes of competent golf followed by another nine.
+5 birdies — holes 11, 12, 14, 15, 17 — and 4 pars. -5 on the back. 31 strokes. Not a single hole over par. We see you. We have written it down. The audit is, for now, paused.
 
-Tied for second at -7 alongside Jamie and Keo. Three strokes behind Sam, three rounds in which to find them.`,
+But the front 9 of Day 1 remains a blank space. -2 with no per-hole story. Josh sits at -7 for the day, tied for second, and we still don't know how he opened. Day 2 had better arrive with a complete card or the audit comes back from suspension and the proceedings will be PUBLIC. Day 1: -7. Most of the data, eventually tabled.`,
 
         jamie: `Jamie has been deceiving us this entire time.
 
@@ -101,7 +101,7 @@ The man who opened the day with a six on hole one and an eagle on hole two has f
       },
       summary: `Day 1 is done and Sam Clifford has put down a marker that should make the rest of us feel embarrassed for showing up. A 62. -10. Bogey-free on the back nine with six birdies across nine holes. He's three clear of a three-way tie at -7.
 
-In the second-place chase: Josh put together a clean -7 (-2 front, -5 back), Jamie Maclaren had a two-eagle psychotic episode after pretending to be boring all morning, and Keo posted the most boring back 9 of his career — five birdies, four pars, zero chaos.
+In the second-place chase: Josh "I will file numbers when it suits me" Dally finally turned in a back-9 per-hole card (-5), Jamie Maclaren had a two-eagle psychotic episode after pretending to be boring all morning, and Keo posted the most boring back 9 of his career — five birdies, four pars, zero chaos.
 
 Three strokes is gettable in three days. Three strokes from Sam, when Sam is shooting -10, is something else entirely. The chasing pack needs a wobble. Day 2 begins tomorrow.`,
     },
