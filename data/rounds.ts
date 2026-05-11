@@ -79,11 +79,11 @@ Front 9 was already an offence: -4 with the eagle on hole 2 and a three-birdie r
 
 Sam Clifford is -10 through one round. The rest of us are tied at -7, three strokes back, looking for the controller's reset button. The only way back into this tournament is a Sam Clifford mid-round nervous breakdown. We will be watching for one.`,
 
-        josh: `Josh, mate. Josh. The back 9 came in. WITH PER-HOLE NUMBERS. At last.
+        josh: `Josh quietly turned in a -7 on Day 1. The front 9 was -2 (we'll take it), the back 9 was a clean -5: five birdies (11, 12, 14, 15, 17), four pars, not a single hole over par.
 
-5 birdies — holes 11, 12, 14, 15, 17 — and 4 pars. -5 on the back. 31 strokes. Not a single hole over par. We see you. We have written it down. The audit is, for now, paused.
+31 strokes for the back nine is the kind of round you post when you've worked out a process and you're just executing it. No drama, no chaos, no headline moments. Just nine holes of competent golf followed by another nine.
 
-But the front 9 of Day 1 remains a blank space. -2 with no per-hole story. Josh sits at -7 for the day, tied for second, and we still don't know how he opened. Day 2 had better arrive with a complete card or the audit comes back from suspension and the proceedings will be PUBLIC. Day 1: -7. Most of the data, eventually tabled.`,
+Tied for second at -7 alongside Jamie and Keo. Three strokes behind Sam, three rounds in which to find them.`,
 
         jamie: `Jamie has been deceiving us this entire time.
 
@@ -101,7 +101,7 @@ The man who opened the day with a six on hole one and an eagle on hole two has f
       },
       summary: `Day 1 is done and Sam Clifford has put down a marker that should make the rest of us feel embarrassed for showing up. A 62. -10. Bogey-free on the back nine with six birdies across nine holes. He's three clear of a three-way tie at -7.
 
-In the second-place chase: Josh "I will file numbers when it suits me" Dally finally turned in a back-9 per-hole card (-5), Jamie Maclaren had a two-eagle psychotic episode after pretending to be boring all morning, and Keo posted the most boring back 9 of his career — five birdies, four pars, zero chaos.
+In the second-place chase: Josh put together a clean -7 (-2 front, -5 back), Jamie Maclaren had a two-eagle psychotic episode after pretending to be boring all morning, and Keo posted the most boring back 9 of his career — five birdies, four pars, zero chaos.
 
 Three strokes is gettable in three days. Three strokes from Sam, when Sam is shooting -10, is something else entirely. The chasing pack needs a wobble. Day 2 begins tomorrow.`,
     },
@@ -120,17 +120,19 @@ The front 9 today was a flat -4, which had the rest of us briefly believing the 
 
 -21 for the season, three strokes clear of Jamie and Keo (T2 at -18). The wobble was a feint. Sam responded to the entire chasing pack catching up to within a stroke by shooting the lowest back 9 we have on record. The man is a monster.`,
 
-        josh: `Josh's back 9 was -5: six birdies (10, 13, 14, 15, 17 and 18), two pars, and the now-traditional Dally Bogey on hole 12 — a four on a par 3, which is a special kind of inefficiency.
+        josh: `Josh's back 9 was -5: six birdies (10, 13, 14, 15, 17 and 18), two pars, and one bogey on hole 12 — a four on a par 3, which is a special kind of inefficiency.
 
-62 for the day, 127 strokes across two rounds, -17 for the tournament. Sole 4th place, one stroke off the T2 pack. Josh has now filed complete per-hole cards on three of four 9-hole batches. The Day 1 front 9 audit remains OFFICIALLY OPEN. We have not forgotten.
+The defining Josh moment of the night came after he hit a shot that didn't quite shape the way he wanted. "I thought it would come back but it didn't," he says, dead serious. Sam, without looking up: "Just like your hairline." Josh has not recovered. Neither have we. The transplant lobby has filed a complaint.
 
-A 62 is a great round in any tournament that isn't this one. Sam shot a 61 today on top of the 62 he shot yesterday. Josh is four strokes behind a man who has bogeyed exactly one hole in 36 played. The chase is, charitably, uphill.`,
+62 for the day, -17 for the tournament. Sole 4th place, one stroke off the T2 pack. Sam shot a 61 on top of the 62 he shot yesterday. Four strokes back, two rounds to go. The chase is, charitably, uphill.`,
 
         jamie: `Jamie shot a sixty-one. Same number Sam shot. Same number Keo shot. Three players, three 61s, no one closed any ground on the leader at all.
 
 The back 9 was the work of someone who has obviously been studying the leader. Five birdies (11, 12, 14, 17), an eagle on hole 15 (yes — same hole he eagled yesterday, par 5, three on the card both times), two pars, and a closing bogey on 18 because he has to remind us he's human.
 
-Day 2 total: -11. Season: -18, tied second with Keo. One day ago we called Jamie a metronome. We have been bleeding since. Sam still leads by three because Jamie's Day 1 was 'only' -7. But Day 2 was a tie at -11 stroke-for-stroke. If this Jamie shows up tomorrow, the lead is in real danger.`,
+Special mention to the moment Jamie took it upon himself to coach Sam — the tournament leader, the man shooting a 29 on the back nine — on how to shape his putts. Long explanation, hands waving, full instructor mode. Then he stepped up to his own putt — the easiest putt of the night, conceded territory — and missed it. The silence was a public service.
+
+Day 2 total: -11. Season: -18, tied second with Keo. One day ago we called Jamie a metronome. We have been bleeding since. If this Jamie shows up tomorrow — and keeps his mouth shut on the green — the leader's three-stroke margin is in real danger.`,
 
         keo: `Keo. Look at Keo. The man who opened the tournament with a six on hole one has now shot a 61.
 
