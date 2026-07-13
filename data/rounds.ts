@@ -53,6 +53,23 @@ const r2Scorecards: Record<PlayerId, Scorecard> = {
   keo:   { holes: keo_r2,   front9Strokes: 30, front9ToPar: -6, back9Strokes: 31, back9ToPar: -5, totalStrokes: 61, totalToPar: -11 },
 }
 
+// Day 3 — front 9 played, back 9 not yet.
+// Sam: 3,4,4,3,4,2,4,4,3 → 31 strokes, -5 (birdies 1, 2, 6, 8, 9 — closed birdie-birdie)
+const sam_r3 = holesFromStrokes([3,4,4,3,4,2,4,4,3,  null,null,null,null,null,null,null,null,null])
+// Keo: 4,3,4,3,4,2,3,5,3 → 31 strokes, -5 (eagle on 2 — third day running)
+const keo_r3 = holesFromStrokes([4,3,4,3,4,2,3,5,3,  null,null,null,null,null,null,null,null,null])
+// Jamie: 4,4,3,3,3,3,4,4,3 → 31 strokes, -5 (five birdies, no bogeys)
+const jamie_r3 = holesFromStrokes([4,4,3,3,3,3,4,4,3, null,null,null,null,null,null,null,null,null])
+// Josh: 3,3,4,3,4,2,4,5,4 → 32 strokes, -4 (birdie-eagle start, led through 6, par-par-par finish)
+const josh_r3 = holesFromStrokes([3,3,4,3,4,2,4,5,4, null,null,null,null,null,null,null,null,null])
+
+const r3Scorecards: Record<PlayerId, Scorecard> = {
+  sam:   { holes: sam_r3,   front9Strokes: 31, front9ToPar: -5, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  josh:  { holes: josh_r3,  front9Strokes: 32, front9ToPar: -4, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  jamie: { holes: jamie_r3, front9Strokes: 31, front9ToPar: -5, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  keo:   { holes: keo_r3,   front9Strokes: 31, front9ToPar: -5, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+}
+
 function emptyRound(roundNumber: 1 | 2 | 3 | 4, label: string): Round {
   return {
     id: `round_${roundNumber}`,
@@ -151,14 +168,52 @@ Jamie's back 9 was also exceptional — 30 strokes with an eagle on hole 15 (bac
 Season after two rounds: Sam -21, Jamie -18 (T2), Keo -18 (T2), Josh -17. Two days, 36 holes remain. The chasing pack needs Sam to wobble. Based on the evidence to date (one bogey total, an eagle on hole 13, a 29 back nine in response to the field catching up), the probability of a Sam wobble is rounding to zero.`,
     },
   },
-  emptyRound(3, "Day 3"),
+  {
+    id: "round_3",
+    roundNumber: 3,
+    label: "Day 3",
+    status: "in_progress",
+    scorecards: r3Scorecards,
+    commentary: {
+      players: {
+        sam: `Sam spent most of the front 9 in second place, which was novel while it lasted. Josh had opened birdie-eagle and was strutting about like David Brent doing the guided office tour, and Sam just... waited. Birdies on 1 and 2 to keep contact, a run of pars through the middle, a two on the par-3 6th, and then — right when it mattered — birdies on 8 and 9. A lovely pair of boys.
+
+That closing pair turned a decent nine into a 31 and turned Josh's evening into a cautionary tale. -5 on the front, level best score of the batch, lead intact at three.
+
+Sam is now -26 through 45 holes with ONE bogey all tournament. At this point the leaderboard isn't a competition, it's a hostage situation.`,
+
+        josh: `Right. Let's talk about it.
+
+Josh opened birdie-EAGLE. Three under after two holes. Led the group for essentially the entire evening — through 6 he was -4 and everyone else was scrambling around at -3, and you could hear the confidence radiating off him like a man who'd just been told his zone 1-2 travelcard covers zone 3. Then the last three holes happened. Par. Par. Par. Nothing catastrophic — no blow-ups, no water, no shame spiral — just three flat pars while every single other player finished -2 over the same stretch. Sam went birdie-birdie. Jamie went birdie-birdie. Keo birdied 9. Josh watched.
+
+Led for seven holes, finished the batch dead last. That's not bad luck, that's a Mark Corrigan life choice. -4 on the day, -21 for the season, sole last, five off the lead. The chase was uphill before. It's now uphill in the rain.`,
+
+        jamie: `Jamie put together the quietest 31 you'll ever see: five birdies (2, 3, 5, 8, 9), four pars, zero bogeys, zero drama, zero unsolicited putting seminars. Progress on all fronts.
+
+He matched Sam shot-for-shot down the stretch — birdies on 8 and 9 while Josh was busy composting his own lead — and stays tied second at -23. Still three behind, which has been the exact size of the gap since Day 1, like it's been nailed on.
+
+The concern for the field is that Jamie has now played 45 holes with two eagles, a stack of birdies and barely a mistake, and it's STILL not enough. The concern for Jamie is that at some point he'll need to do it while Sam doesn't. No sign of that yet.`,
+
+        keo: `Keo eagled hole 2. Again. That's three days running he's made a three on that par 5 — Day 1, Day 2, Day 3, eagle, eagle, eagle. At this point it's not skill, it's a standing arrangement. The hole should start charging him rent.
+
+The rest of the nine was tidy in the way that new-era Keo is now upsettingly tidy: birdies on 6, 7 and 9, five pars, nothing dropped. 31 strokes, -5, keeping perfect pace with the leader and Jamie.
+
+-23 for the season, tied second, three back with 27 holes left. The eagle machine on hole 2 has become the most reliable thing in this tournament apart from Sam refusing to bogey. One of those two things has to break eventually. Surely.`,
+      },
+      summary: `Day 3, front 9 done, and the night belonged to Josh right up until it emphatically didn't. He opened birdie-eagle, led at -4 through six, and then finished par-par-par while literally everyone else played the last three in -2. Sam closed birdie-birdie — a lovely pair of boys — Jamie closed birdie-birdie, Keo birdied the 9th, and Josh finished the batch he'd led all evening in last place. You almost have to admire the shape of it.
+
+Elsewhere: three players shot 31. Keo eagled hole 2 for the THIRD CONSECUTIVE DAY, which is now less a golf statistic and more a planning permission issue. Hole 6, the par 3, gave up three separate 2s (Sam, Josh, Keo). And Jamie birdied five holes without saying a single word about anyone's putting stroke, which we're calling character growth.
+
+Season through 45 holes: Sam -26, Jamie -23 (T2), Keo -23 (T2), Josh -21. The gap at the top remains three strokes, as it has since roughly the dawn of time. Back 9 of Day 3 to come.`,
+    },
+  },
   emptyRound(4, "Day 4"),
 ]
 
-export const SEASON_COMMENTARY: string | null = `Day 2 is done. Sam shot a 61 today after his 62 yesterday. Across 36 holes he is -21 for the tournament. He has bogeyed exactly one hole in two complete rounds at Augusta.
+export const SEASON_COMMENTARY: string | null = `Forty-five holes played and Sam Clifford is -26 with one bogey. One. The lead has been exactly three strokes since Day 1 and shows no sign of moving — the man closed the Day 3 front nine with back-to-back birdies the moment he was briefly headed. A lovely pair of boys, delivered with the warmth of a debt collector.
 
-Jamie and Keo are tied for second at -18 — both also shot 61 today, matching the leader stroke for stroke. The chase is still mathematically alive but the leader has not given an inch since the front 9 of Day 2, when he briefly let the field catch up to within one stroke. He responded by shooting a 29 on the back nine, including an eagle on hole 13. Josh is fourth at -17.
+Jamie and Keo are tied second at -23 and both playing genuinely superb golf into a total void. Jamie has two eagles and barely a blemish across 45 holes. Keo has eagled hole 2 on all three days, which is no longer variance, it's a residency. Neither has gained a single stroke on the lead since Thursday.
 
-Two rounds remaining. 36 holes left. The chasing pack needs a Sam meltdown. Based on the evidence to date — one bogey across 36 holes, a 29 on the back nine in direct response to being chased — the probability of meltdown is approximately the same as the probability of a polite Augusta winter.
+And then there's Josh, -21, sole last, five back — having led the most recent nine holes for almost their entirety before finishing par-par-par while everyone else birdied around him like he wasn't there. Somewhere, a documentary crew is nodding slowly.
 
-Day 3 tomorrow. Strap in.`
+Back 9 of Day 3 still to play, then Day 4. 27 holes for someone to make this a contest. Strap in.`
