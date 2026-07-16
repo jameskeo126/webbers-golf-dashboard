@@ -187,55 +187,65 @@ Season after two rounds: Sam -21, Jamie -18 (T2), Keo -18 (T2), Josh -17. Two da
     scorecards: r3Scorecards,
     commentary: {
       players: {
-        sam: `Keo shot a 59 and took the lead. For roughly forty minutes this tournament had a new leader and a genuine plot. Sam then needed exactly -6 on the back nine to take it back. He shot exactly -6.
+        sam: `For the first time in this tournament, Sam Clifford was ordinary.
 
-Birdie-birdie to open the back — a lovely pair of boys — then a birdie on 13, a birdie on 14, and an eagle on 15, the hole Jamie had spent two days treating as a second home. Lead recovered, sums done, and he closed par-par-par and went to bed.
+Understand the scale we're grading on: he shot a 61, went -11, eagled the 15th, and is still top of the board. And it was a flat evening. Keo shot a 59 and took the lead off him. Sam's back nine was a 30; Keo's was a 28 and Josh's a 29. For the first time all week, Sam's nine wasn't the best in the room. It wasn't even second.
 
-Which is the part that should frighten everyone. Josh finished the FRONT nine par-par-par and got buried for it in this very column. Sam finished the BACK nine par-par-par and won the day's argument. Same three holes, same three scores, entirely opposite verdicts, because one of them had already done the work.
+Then the finish. Pars on 17 and 18 to sign off with the tournament still live. Perhaps not such a lovely pair of boys.
 
-Worth noting the back nine was played in two sittings, on account of Sam's internet dying immediately after he'd eagled the 15th to retake the lead. Everyone reconvened, and he calmly parred the last three to win by one. We're not saying anything. We're simply laying the events out in chronological order and letting you sit with them.
+Because here's the thing. We spent the entire front-nine column mocking Josh for closing par-par-par. Sam then closed his own back nine par-par-par and came within one stroke of handing the whole thing over. Same three holes, same three scores. We'd like to formally apologise to Josh Dally.
 
-61 for the day. -32 for the tournament. ONE bogey in 54 holes — hole 9, Day 1, nothing since. He leads by a single stroke, the closest anyone has been all week, and he still looks like a man with his feet up.`,
+Worth noting the back nine was played in two sittings, on account of Sam's internet dying immediately after he'd eagled the 15th. Everyone reconvened. He parred out. We're not saying anything — we're simply laying the events out in chronological order and letting you sit with them.
 
-        josh: `The front nine was a crime scene. Josh opened birdie-EAGLE, led at -4 through six with the confidence radiating off him like a man who'd just been told his zone 1-2 travelcard covers zone 3, and then finished par-par-par while every other player played those same three holes in -2. He led for seven holes and finished the batch dead last. That's not bad luck, that's a Mark Corrigan life choice.
+61 for the day, -32 for the tournament, one bogey in 54 holes, still leading. But the margin went from three to one, and for the first time all week, you could see him working.`,
 
-We stand by every word of it. But we do have an update: the back nine was a 29.
+        josh: `We're not doing the bit tonight.
 
-Five birdies (10, 13, 14, 16, 18), an eagle on 15, three pars, not a single dropped shot. -7 — the lowest back nine anyone had managed all tournament until Keo went and beat it about an hour later. 61 for the day, comfortably his best round of the week, produced roughly twenty minutes after being publicly buried. God I back that line.
+Josh got taken apart in this column for the front nine. Led at -4 through six, finished par-par-par, and we called it a Mark Corrigan life choice and enjoyed ourselves enormously. Then he went out and shot a 29.
 
-And he's STILL last. -28, four off the lead, because Keo shot a 59 and Sam produced precisely the number he needed. Josh played the best golf of his tournament and gained nothing on anybody.
+Five birdies (10, 13, 14, 16, 18), an eagle on 15, three pars, not one dropped shot. -7 on the back — the lowest nine anybody had managed all tournament, until Keo beat it about an hour later. 61 for the day, his best round of the week, produced roughly twenty minutes after being publicly buried. God I back that line.
 
-Here is the statistic that should be read aloud at his funeral: Josh has won zero holes outright all tournament. Zero. Not one hole, all week, where he alone had the best number on the board. There's something almost beautiful about it — a man sprinting up a downward escalator, and the escalator is Sam Clifford.`,
+That is a proper response. Most people, having been informed in writing that their collapse was a lifestyle choice, would have gone quietly into the back nine and shot a 34. Josh went out and played the best golf of his week.
 
-        jamie: `Jamie shot a 61 without ever raising his voice. Five birdies on the front, six on the back, no bogeys after lunch, and he closed birdie-birdie-birdie through 16, 17 and 18.
+-28 and last, four off the lead, which on a night he played like this is genuinely unjust. The only reason he isn't in this fight is that Keo shot a 59 and Sam refuses to make bogeys. Four back with 18 to play is not nothing. Let the man have this one.`,
 
-That finish matters. He bogeyed the 18th on Day 1. He bogeyed the 18th on Day 2. Two consecutive days of walking off the last with a dropped shot in his pocket, and tonight he birdied it. Growth. Visible, documented growth.
+        jamie: `Jamie shot a 61 and very nearly had his second career hissy fit about it.
 
-The bad news is he lost the 15th. Two days running he'd eagled that hole — it was his, it had his name on the deed — and tonight he made a four while Sam AND Josh both made threes on it. He birdied his own hole and still went backwards on it. Being evicted by two other men on the same evening is a very specific humiliation.
+The golf first, because it was excellent. Five birdies on the front, six on the back, no bogeys after lunch, and he closed birdie-birdie-birdie through 16, 17 and 18. That finish matters: he bogeyed the 18th on Day 1 and bogeyed it again on Day 2. Two days of walking off the last with a dropped shot in his pocket, and tonight he birdied it. Visible, documented growth.
 
--29 for the tournament, third, three off the lead. The exact same three strokes he's been behind since Thursday. Keo closed to one tonight. Josh shot a 29. Jamie shot a 61, played beautifully, and finished the evening standing in precisely the spot where he started it. Maybe Jamie should keep focused on his own putts.`,
+Now the incident. There has been exactly one Maclaren hissy fit in recorded history. Tonight came within touching distance of the second, and the trigger was his own assessment that the evening had been "average" — a description of a 61 that the rest of the group found medically concerning. Somewhere in the ensuing commotion the phrase "bee's dick" was deployed. Nobody can now reconstruct what it was in reference to, and nobody needs to. It was the funniest thing said all night and it will comfortably outlive every shot he hit.
+
+The one legitimate grievance: he lost the 15th. Two days running he'd eagled that hole — it had his name on the deed — and tonight he made a four while Sam AND Josh both made threes. Evicted from his own hole by two men on the same evening.
+
+-29, third, three off the lead. The exact three strokes he's been behind since Thursday. Keo closed to one tonight. Jamie played lovely golf and finished the evening standing precisely where he started it.
+
+Average, though. Sure.`,
 
         keo: `Keo shot a FIFTY-NINE.
 
-The eagle on hole 2 turned up as scheduled — third day running, it's a residency now, the hole should be charging him rent — but that isn't the story. The story is the back nine. A 28. Seven birdies, an eagle on 13, one bogey, and not a single par. Nine holes and not one of them was ordinary.
+The eagle on hole 2 arrived on schedule — third day running, it's a residency now, the hole should be charging rent — but that isn't the story. The story is the back nine. A 28. Seven birdies, an eagle on 13, one bogey, and not a single par. Nine holes, not one of them ordinary. That was liquid golf.
 
-Lowest nine of the tournament. Lowest round of the tournament by two clear shots. And for a genuine, verifiable stretch of the evening, JamesKeo126 led the Masters.
+Lowest nine of the tournament. Lowest round of the tournament by two clear shots. And for a genuine, verifiable stretch of the evening, JamesKeo126 led the Masters. This is a man who opened this tournament with a six on hole one.
 
-This is a man who opened this tournament with a six on hole one.
+Which brings us to the 12th, and to three feet.
 
-The bogey on 12 was his first dropped shot since hole 1 of Day 2 — 28 holes clean — and it died on a par 3, which is the golfing equivalent of getting done by a speed camera on your own road.
+Three feet. Flat. The sort of putt you'd concede to a stranger. He missed it like a man who had been handed a putter earlier that afternoon and was still forming a relationship with it. It is the only blemish on the greatest round anybody has played all week, and it ended a run of 28 holes without a dropped shot. Twenty-eight holes of immaculate golf, undone by a distance you could cover by falling over.
 
--31, second, one back. Sam needed -6 to hold him off and produced exactly -6, which at this point feels less like golf and more like a haunting. But it's ONE stroke. It has been three since Thursday. Keo is the only man all week who has actually made Sam Clifford go and look for something.`,
+-31, second, one back. Sam found the -6 he needed to hold him off, because he always does. But it's ONE stroke now, and it has been three since Thursday. Keo is the only man all week to make Sam Clifford look even slightly mortal.
+
+That putt, though. Three feet.`,
       },
-      summary: `Day 3 is done and it finally, FINALLY happened. Somebody moved Sam.
+      summary: `Day 3 is done and for one evening the spell broke.
 
-Keo shot a 59. A back nine of 28 — seven birdies, an eagle on 13, no pars whatsoever — and for a real stretch of the evening he led this tournament outright. Sam then needed exactly -6 on his own back nine to take it back, and shot exactly -6. Eagle on 15, then par-par-par to the house, because the maths was already done.
+Keo shot a 59. A back nine of 28 — seven birdies, an eagle, not a single par — and for a genuine stretch of the night he led this tournament outright. Lowest round of the week by two clear shots. The only blemish on it was a three-foot putt on the 12th, missed in a manner best described as recreational.
 
-Which is the joke of the entire day. Josh finished the FRONT nine par-par-par and got demolished for it in this column. Sam finished the BACK nine par-par-par and won. Same three holes, same three pars. The difference is that one of them had a lead in the bank and the other had a personality.
+Sam, by his own preposterous standards, was flat. He shot 61, went -11, eagled the 15th, and STILL lost two strokes of his lead, because his back nine was a 30 while Keo made 28 and Josh made 29. For the first time all tournament, Sam's nine wasn't the best in the room. He then closed par-par-par — the precise finish we spent the entire front-nine column mocking Josh for — with the thing still live. Apologies are owed to Josh Dally.
 
-Josh, to his credit, responded to being buried by shooting a 29 — five birdies, an eagle on 15, no bogeys, his best round of the week — and is still last. Jamie shot 61, closed birdie-birdie-birdie, and finally birdied the 18th after bogeying it on both previous days. He also lost the 15th to Sam and Josh on the same night, a hole he'd eagled twice. The whole back nine was played in two sittings because Sam's connection dropped, which we mention only for the record.
+Josh, for the record, was excellent. A 29 on the back with an eagle on 15 and no bogeys, his best round of the week, produced about twenty minutes after being publicly buried in this column. He's still last, which is genuinely unfair. Let him have it.
 
-Three 61s and a 59. Nobody shot worse than -11. Nobody has ever needed a calculator this badly.
+Jamie shot 61, closed birdie-birdie-birdie, and finally birdied the 18th after bogeying it on both previous days. He also came within a bee's dick of his second career hissy fit, on the grounds that his own evening had been "average". The phrase entered the record. The context did not survive.
+
+Three 61s and a 59, nobody worse than -11, and the whole back nine played in two sittings because Sam's internet died. We mention that last part only for the record.
 
 Season through 54 holes: Sam -32, Keo -31, Jamie -29, Josh -28. The lead is ONE. It has been three since Thursday. Eighteen holes left and, for the first time all week, this is a tournament.`,
     },
@@ -243,12 +253,10 @@ Season through 54 holes: Sam -32, Keo -31, Jamie -29, Josh -28. The lead is ONE.
   emptyRound(4, "Day 4"),
 ]
 
-export const SEASON_COMMENTARY: string | null = `Fifty-four holes gone and Sam Clifford is -32 with ONE bogey. One. Hole 9, Day 1. Forty-five consecutive holes since without dropping a shot.
+export const SEASON_COMMENTARY: string | null = `Fifty-four holes and Sam Clifford is -32 with one bogey. One. Hole 9, Day 1, and nothing since.
 
-But the lead is one stroke, and that is new. It was three on Thursday, three on Friday, three on Saturday afternoon. Then Keo shot a 59 — a 28 on the back with seven birdies and no pars — took the lead outright, and forced Sam to go and find exactly the -6 he needed to reclaim it. He found it, obviously. He always finds it. But he had to go and look, which is further than anybody has made him walk all week.
+But the lead is a single stroke now, and that is new. It was three on Thursday, three on Friday, three on Saturday afternoon. Then Keo shot a 59 — a 28 on the back with seven birdies and not one par — took the lead outright, and made Sam go and find the -6 that won it back. He found it. He always finds it. But he spent the evening as the second-best player on the golf course, and that has not happened once all week.
 
-Sam -32 and Keo -31 at the top: a lovely pair of boys, separated by a single stroke and a quantity of accumulated resentment that no scorecard can hold.
-
-Jamie is -29, playing beautiful golf directly into a void, three off the lead exactly as he has been since day one. Josh is -28 and last, having just posted the best round of his week — a 29 on the back with an eagle — and gained precisely nothing for it. Somewhere, a documentary crew is nodding slowly.
+Keo is -31, with an eagle on hole 2 in all three rounds, which stopped being variance somewhere around Friday and is now a tenancy agreement. Jamie is -29, playing lovely golf into a void, three off the lead exactly as he has been since day one and increasingly unwilling to pretend that's fine. Josh is -28 and last, having just played the best round of his week for no reward whatsoever. Somewhere, a documentary crew is nodding slowly.
 
 One round left. Eighteen holes, one stroke. After three days of a coronation, it's a fight.`
