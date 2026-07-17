@@ -1,21 +1,10 @@
 import type { Round, Scorecard, Hole, PlayerId } from "./types"
 import { HOLE_PARS } from "./course"
 
-// Helpers for building scorecards. Used here, not exported.
-function emptyHoles(): Hole[] {
-  return HOLE_PARS.map((par, i) => ({ holeNumber: i + 1, par, strokes: null }))
-}
+// Helper for building scorecards. Used here, not exported.
 function holesFromStrokes(strokes: (number | null)[]): Hole[] {
   if (strokes.length !== 18) throw new Error("expected 18 holes")
   return HOLE_PARS.map((par, i) => ({ holeNumber: i + 1, par, strokes: strokes[i] }))
-}
-function emptyScorecard(): Scorecard {
-  return {
-    holes: emptyHoles(),
-    front9Strokes: null, front9ToPar: null,
-    back9Strokes:  null, back9ToPar:  null,
-    totalStrokes:  null, totalToPar:  null,
-  }
 }
 
 // Day 1 — complete.
@@ -81,16 +70,24 @@ const r3Scorecards: Record<PlayerId, Scorecard> = {
   keo:   { holes: keo_r3,   front9Strokes: 31, front9ToPar: -5, back9Strokes: 28, back9ToPar: -8, totalStrokes: 59, totalToPar: -13 },
 }
 
-function emptyRound(roundNumber: 1 | 2 | 3 | 4, label: string): Round {
-  return {
-    id: `round_${roundNumber}`,
-    roundNumber,
-    label,
-    status: "in_progress",
-    scorecards: { sam: emptyScorecard(), josh: emptyScorecard(), jamie: emptyScorecard(), keo: emptyScorecard() },
-    commentary: { players: {}, summary: null },
-  }
+// Day 4 — front 9 played, back 9 not yet. Group hungover after England's loss to Argentina.
+// Sam played the round in a lime green bucket hat.
+// Sam: 4,3,3,3,4,2,4,4,3 → 30 strokes, -6 (eagle on 2; birdies 3, 6, 8, 9; best front 9 of his week)
+const sam_r4 = holesFromStrokes([4,3,3,3,4,2,4,4,3,  null,null,null,null,null,null,null,null,null])
+// Keo: 4,3,3,3,4,3,4,5,3 → 32 strokes, -4 (eagle on 2 for the fourth straight day; birdies 3, 9; six pars)
+const keo_r4 = holesFromStrokes([4,3,3,3,4,3,4,5,3,  null,null,null,null,null,null,null,null,null])
+// Jamie: 3,5,4,3,4,3,4,4,3 → 33 strokes, -3 (birdies 1, 8, 9; six consecutive pars through the middle)
+const jamie_r4 = holesFromStrokes([3,5,4,3,4,3,4,4,3, null,null,null,null,null,null,null,null,null])
+// Josh: 4,4,4,3,4,3,3,6,3 → 34 strokes, -2 (birdies 2, 7, 9; a six on the par-5 8th)
+const josh_r4 = holesFromStrokes([4,4,4,3,4,3,3,6,3, null,null,null,null,null,null,null,null,null])
+
+const r4Scorecards: Record<PlayerId, Scorecard> = {
+  sam:   { holes: sam_r4,   front9Strokes: 30, front9ToPar: -6, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  josh:  { holes: josh_r4,  front9Strokes: 34, front9ToPar: -2, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  jamie: { holes: jamie_r4, front9Strokes: 33, front9ToPar: -3, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
+  keo:   { holes: keo_r4,   front9Strokes: 32, front9ToPar: -4, back9Strokes: null, back9ToPar: null, totalStrokes: null, totalToPar: null },
 }
+
 
 export const ROUNDS: Round[] = [
   {
@@ -213,7 +210,7 @@ That is a proper response. Most people, having been informed in writing that the
 
 The golf first, because it was excellent. Five birdies on the front, six on the back, no bogeys after lunch, and he closed birdie-birdie-birdie through 16, 17 and 18. That finish matters: he bogeyed the 18th on Day 1 and bogeyed it again on Day 2. Two days of walking off the last with a dropped shot in his pocket, and tonight he birdied it. Visible, documented growth.
 
-Now the incident. There has been exactly one Maclaren hissy fit in recorded history. Tonight came within touching distance of the second, and the trigger was his own assessment that the evening had been "average" — a description of a 61 that the rest of the group found medically concerning. Somewhere in the ensuing commotion the phrase "bee's dick" was deployed. Nobody can now reconstruct what it was in reference to, and nobody needs to. It was the funniest thing said all night and it will comfortably outlive every shot he hit.
+Now the incident. There has been exactly one Maclaren hissy fit in recorded history. Tonight came within touching distance of the second, and the trigger was his own assessment that the evening had been "average" — a description of a 61 that the rest of the group found medically concerning. Somewhere in the ensuing commotion a putt slipped past the hole by what he described, with real feeling, as a bee's dick. The unit has since been adopted into this tournament's official system of measurement. It was the funniest thing said all night and it will comfortably outlive every shot he hit.
 
 The one legitimate grievance: he lost the 15th. Two days running he'd eagled that hole — it had his name on the deed — and tonight he made a four while Sam AND Josh both made threes. Evicted from his own hole by two men on the same evening.
 
@@ -243,20 +240,84 @@ Sam, by his own preposterous standards, was flat. He shot 61, went -11, eagled t
 
 Josh, for the record, was excellent. A 29 on the back with an eagle on 15 and no bogeys, his best round of the week, produced about twenty minutes after being publicly buried in this column. He's still last, which is genuinely unfair. Let him have it.
 
-Jamie shot 61, closed birdie-birdie-birdie, and finally birdied the 18th after bogeying it on both previous days. He also came within a bee's dick of his second career hissy fit, on the grounds that his own evening had been "average". The phrase entered the record. The context did not survive.
+Jamie shot 61, closed birdie-birdie-birdie, and finally birdied the 18th after bogeying it on both previous days. He also came within touching distance of his second career hissy fit, on the grounds that his own evening had been "average". At some point a putt slipped past the hole by a bee's dick. The phrase has since been adopted as a unit of measurement.
 
 Three 61s and a 59, nobody worse than -11, and the whole back nine played in two sittings because Sam's internet died. We mention that last part only for the record.
 
 Season through 54 holes: Sam -32, Keo -31, Jamie -29, Josh -28. The lead is ONE. It has been three since Thursday. Eighteen holes left and, for the first time all week, this is a tournament.`,
     },
   },
-  emptyRound(4, "Day 4"),
+  {
+    id: "round_4",
+    roundNumber: 4,
+    label: "Day 4",
+    status: "in_progress",
+    scorecards: r4Scorecards,
+    commentary: {
+      players: {
+        sam: `Sam Clifford turned up in a lime green bucket hat.
+
+Establish the facts first. England lost to Argentina. The group drank accordingly. Everybody arrived in no condition whatsoever to play golf, and three of the four scorecards are a full confession. Sam — who was at the same match, presumably drinking from the same taps — put a lime green bucket hat on his player and shot the best front nine of his tournament.
+
+30. -6. Eagle on the 2nd, birdies on 3, 6, 8 and 9, four pars, nothing dropped. His previous best front nines this week were 32, 32 and 31. He has never played this stretch better in his life, and he elected to do it hungover, in a hat that Jamie and Josh regard as a form of common assault.
+
+The hat was not an accident. Nobody puts a lime green bucket hat on their man at Augusta National by mistake. You do it because you know that two of the four people in the room hold sincere, deeply-felt views about how this game ought to look, and you want to find out what happens to their golf when you offend them. What happened to their golf: -3 and -2.
+
+The lead was one stroke last night. It is three again now — the number this tournament keeps returning to, like a law of physics that bent for one evening and has snapped back into place.
+
+Nine holes left, and Sam Clifford is three clear in a lime green bucket hat.`,
+
+        keo: `The eagle on hole 2 arrived for the FOURTH consecutive day. Four rounds, four threes on that par 5. The residency is now a freehold.
+
+And then the rest of it was a 32, and the rest of it was flat. Two birdies, six pars, nothing dropped and nothing much gained. -4, which on any ordinary evening is a perfectly good nine of golf, and which tonight cost him two strokes, because Sam shot -6. The one became three.
+
+In fairness, everyone was hungover. England lost to Argentina, the group drank in the traditional manner, and three of these four cards show the damage. Keo's is one of them — a man going round on autopilot with one glorious exception on the second hole, which at this point he could probably eagle in his sleep and may well have.
+
+-35, second, three back with nine to play. He shot a 28 on this very nine last night. The round he needs is a round he has already played, once, twenty-four hours ago, which is either enormously encouraging or the cruellest fact in this tournament.
+
+Something exceptional, or nothing at all.`,
+
+        jamie: `Jamie shot a 33 and went very, very quiet.
+
+Birdie on the 1st, birdie-birdie to close on 8 and 9, and six consecutive pars in between — the golfing equivalent of standing extremely still and hoping the evening passes over you. -3, no bogeys, nothing wrong with it, and two strokes worse than the man he needed to catch.
+
+He also had to look at a lime green bucket hat for nine holes. Jamie holds views on this. Jamie holds views on golf attire in roughly the way other men hold religious convictions, and Sam knows this precisely, which is the entire reason the hat exists. It is not decoration. It is ordnance.
+
+Notably, he made six pars in a row without once reaching for the bee's dick, which we're reading as either growth or defeat.
+
+-32, third, six back with nine to play. It's gone and he knows it's gone. He played 54 holes of genuinely lovely golf, never once got within three of the lead, and has now been seen off by a man in a hat. He left the last session visibly depressed. Tonight will not have helped.`,
+
+        josh: `Josh shot a 34 and made a six on the 8th.
+
+Par 5. Six. It's the only dropped shot on any card tonight and it belongs to the man having the worst week here. Around it: birdies on 2, 7 and 9, five pars, -2, and the general air of a man completing a round of golf because the alternative is saying out loud that it's over.
+
+In his defence — and we've decided to be in his defence these days — the whole group was hungover. England lost to Argentina, everyone drank, and the golf was always going to pay for it. Josh's card just paid a little more than everybody else's.
+
+He also spent the evening looking at Sam's lime green bucket hat, which for a man of Josh's convictions about this game is roughly equivalent to watching someone eat a Sunday roast with their hands. It wasn't aimed exclusively at him. It landed anyway.
+
+-30, last, eight back with nine to play. He left the last session depressed and this one won't have fixed anything. There are still nine holes, and everybody already knows how they end.`,
+      },
+      summary: `Day 4's front nine, and the only thing anybody is going to remember is the hat.
+
+Sam Clifford dressed his player in a lime green bucket hat. Jamie and Josh — who hold sincere, deeply-felt views about the traditions of this game — then had to look at it for nine holes. Sam shot a 30, the best front nine of his tournament. They shot 33 and 34. The hat was not decoration. The hat was ordnance. It worked.
+
+The context: England lost to Argentina, the group drank accordingly, and everybody arrived in no condition to play golf. Three of the four scorecards are a confession. Sam's reads -6, with an eagle on the 2nd and four birdies, which raises the question of whether he attended the same match, drank in the same pub, or belongs to the same species.
+
+Keo eagled the 2nd for the FOURTH consecutive day — four rounds, four threes, the residency is a freehold now — and then made six pars and shot -4. Fine golf on any ordinary night. Tonight it cost him two strokes. Josh made a six on the par-5 8th, the only dropped shot on any card. Jamie made six pars in a row and said nothing at all.
+
+The lead was ONE last night. It is THREE again now. That number has followed this tournament around since Thursday like a smell.
+
+Season through 63 holes: Sam -38, Keo -35, Jamie -32, Josh -30. Nine holes left. Keo needs something exceptional, and he shot a 28 on this exact nine twenty-four hours ago, so at least he knows the number exists. Jamie and Josh need a different sport.`,
+    },
+  },
 ]
 
-export const SEASON_COMMENTARY: string | null = `Fifty-four holes and Sam Clifford is -32 with one bogey. One. Hole 9, Day 1, and nothing since.
+export const SEASON_COMMENTARY: string | null = `Sixty-three holes and Sam Clifford is -38 in a lime green bucket hat.
 
-But the lead is a single stroke now, and that is new. It was three on Thursday, three on Friday, three on Saturday afternoon. Then Keo shot a 59 — a 28 on the back with seven birdies and not one par — took the lead outright, and made Sam go and find the -6 that won it back. He found it. He always finds it. But he spent the evening as the second-best player on the golf course, and that has not happened once all week.
+The hat gets the top line because the hat was deliberate. Two of the four men in this tournament hold sincere views about how golf ought to look, Sam is entirely aware of this, and so he dressed his player in lime green and made them watch it for nine holes. Then he shot the best front nine of his week. Hungover. While they came apart.
 
-Keo is -31, with an eagle on hole 2 in all three rounds, which stopped being variance somewhere around Friday and is now a tenancy agreement. Jamie is -29, playing lovely golf into a void, three off the lead exactly as he has been since day one and increasingly unwilling to pretend that's fine. Josh is -28 and last, having just played the best round of his week for no reward whatsoever. Somewhere, a documentary crew is nodding slowly.
+Because that's the other half of it: England lost to Argentina, the group drank, and three of the four scorecards are a confession. Not Sam's. Sam went -6 with an eagle and four birdies, has one bogey in 63 holes, and has stretched a lead that was — briefly, thrillingly, for about one evening — down to a single stroke.
 
-One round left. Eighteen holes, one stroke. After three days of a coronation, it's a fight.`
+Keo is -35 and three back, and he is the only live challenger left. He shot a 28 on this back nine last night, which means the round he needs is a round he has already played. Once. Twenty-four hours ago. Jamie is -32 and Josh is -30, and both left the last session visibly depressed, which is the only sane response to what is being done to them.
+
+Nine holes. Three strokes. One hat.`
